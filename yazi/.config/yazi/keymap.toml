@@ -1,0 +1,71 @@
+[[manager.prepend_keymap]]
+on = [ "<S-Up>" ]
+run = "seek -1" 
+desc = "Peek up 5 units in the preview" 
+
+[[manager.prepend_keymap]]
+on = [ "<S-Down>" ]
+run = "seek 1"
+desc = "Peek down 5 units in the preview"
+
+
+# Bookmarks plugin
+[[manager.prepend_keymap]]
+on = [ "m" ]
+run = "plugin bookmarks --args=save"
+desc = "Save current position as a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "'" ]
+run = "plugin bookmarks --args=jump"
+desc = "Jump to a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "b", "d" ]
+run = "plugin bookmarks --args=delete"
+desc = "Delete a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "b", "D" ]
+run = "plugin bookmarks --args=delete_all"
+desc = "Delete all bookmarks"
+
+# Copy file contents plugin
+[[manager.prepend_keymap]]
+on = "<C-y>"
+run = ["plugin copy-file-contents"]
+desc = "Copy contents of file"
+
+# Lazygit plugin
+[[manager.prepend_keymap]]
+on   = [ "g", "i" ]
+run  = "plugin lazygit"
+desc = "run lazygit"
+
+
+# Bypass plugin
+[[manager.prepend_keymap]]
+on = [ "L" ]
+run = "plugin bypass"
+desc = "Recursively enter child directory, skipping children with only a single subdirectory"
+
+[[manager.prepend_keymap]]
+on = [ "H" ]
+run = "plugin bypass --args=reverse"
+desc = "Recursively enter parent directory, skipping parents with only a single subdirectory"
+
+[[manager.prepend_keymap]]
+on = [ "l" ]
+run = "plugin bypass --args=smart_enter"
+desc = "Open a file, or recursively enter child directory, skipping children with only a single subdirectory"
+
+# Max-preview plugin
+[[manager.prepend_keymap]]
+on   = "T"
+run  = "plugin max-preview"
+desc = "Maximize or restore preview"
+
+[[manager.prepend_keymap]]
+on = [ "\"", "h" ]
+run = "plugin custom-shell --args=history"
+desc = "Show Custom-shell history"
