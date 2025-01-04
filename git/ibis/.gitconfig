@@ -1,0 +1,26 @@
+[alias]
+	ps = push
+	ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	st = status
+	dev = checkout develop
+	master = checkout master
+	psu = push -u origin
+	pso = push origin
+	cm = commit -m
+	cma = commit -am
+	aa = add --all
+	brn = checkout -b 
+	br = branch
+	brd= branch -d 
+	co = checkout
+	st2 = status
+[user]
+	name = Nelson Reina (@ibis-nreina)
+	email = nelson.reina@ibis-management.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
