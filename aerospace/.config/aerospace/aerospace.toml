@@ -251,9 +251,6 @@ run='move-node-to-workspace D'
 if.app-id = 'net.kovidgoyal.kitty'
 run='move-node-to-workspace K'
 
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run='move-node-to-workspace K'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
