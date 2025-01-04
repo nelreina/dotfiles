@@ -1,0 +1,234 @@
+# Project Location
+alias ttt='cd $HOME/Documents/SRC/ibis/tcb-tourism-tax'
+
+# General alias
+alias x='exit'
+alias runp='lsof -i '
+alias ll='eza -alh --icons=always'
+alias ls='eza --color=always --long --git --icons=always'
+#alias ll='ls -la'
+alias tree='eza --tree --level=2 --long'
+alias zalias='vim ~/.zsh_aliases'
+alias zrc='vim ~/.zshrc'
+alias zrel='source ~/.zshrc'
+alias usage='du -h -d1'
+alias myip="curl https://ipinfo.io/json; echo"
+alias code='code . -r'
+alias zed="open -a /Applications/Zed.app -n ."
+alias whs='wormhole send'
+alias serpl='serpl --project-root .'
+#alias cd='z'
+alias lzg='lazygit'
+alias lzd='lazydocker'
+alias zz='z -'
+#alias yz='yazi'
+# bun completions
+function yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+alias rm='rm -rf'
+alias cl='clear'
+alias cat='bat --style=plain'
+
+# Project utils
+alias create-python-project='python ~/Dropbox/tools-scripts/devops/src/create-python-project.py'
+alias create-nodejs-project='python ~/Dropbox/tools-scripts/devops/src/create-nodejs-project.py'
+alias kit-add-pocketbase='python ~/Dropbox/tools-scripts/devops/src/kit-add-pocketbase.py'
+alias kit-add-docker='python ~/Dropbox/tools-scripts/devops/src/kit-add-docker.py'
+alias kit-add-my-template='python ~/Dropbox/tools-scripts/devops/src/kit-add-nelreina-template.py'
+
+alias ydmp3='yt-dlp -x --audio-format mp3' 
+
+# LCM
+alias lcmp='ssh root@165.227.76.35'
+
+# IBIS VMS
+alias ctzen='ssh root@157.245.243.3'    
+alias ctztest='ssh root@167.71.16.63'    
+alias bibdev='ssh root@128.199.52.104'    
+alias bibprod='ssh root@64.225.5.20'    
+alias thdev='ssh root@161.35.58.253'    
+alias ipvm='ssh root@157.245.218.29'
+alias rbltest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.144'
+alias rbldb='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.70'
+alias rblapp='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.72'
+#alias gmndev='ssh root@137.184.220.116'    
+#alias gmntest='ssh root@104.248.238.195'
+#alias gmncounter='ssh root@157.230.208.221'
+#alias drrserver='ssh administrator@10.10.22.45'
+#alias mockserver='ssh administrator@10.10.22.46'
+alias massyvm='ssh root@143.198.170.219'
+alias fappivm='ssh root@167.99.126.136'
+alias thubvm='ssh ibis@10.10.210.221'
+alias touristtest='ssh root@159.223.9.118'
+#alias ibisdev='ssh root@146.190.20.24'
+alias gov1='ssh ibisadmin@192.168.217.11'
+alias gov2='ssh ibisadmin@192.168.217.12'
+alias bonith='ssh root@10.166.70.136'
+alias ibisth='ssh ibis@10.10.210.221'
+alias tcbprod='ssh -i ~/.ssh/id_nreina_work root@192.168.218.11'
+alias otrobanda='ssh -i ~/.ssh/id_nreina_work root@174.138.44.254'
+alias tcbproddb='ssh root@192.168.218.12'
+#alias roxvm='ssh root@159.223.190.242'
+alias bonivm='ssh root@10.166.70.136'
+
+
+# GIT Alias
+alias gaa='git aa'
+alias gbr='git br'
+alias gbrn='git brn'
+alias gcma='git cma'
+alias gd='git dev'
+alias gtest='git co test'
+alias gll='git ll'
+alias gm='git merge'
+alias gma='git co main'
+alias gmd='git merge develop'
+alias gmm='git merge main'
+alias gps='git ps'
+alias gpso='git pso'
+alias gpsu='git psu'
+alias gst='git st'
+alias gtag='git tag'
+
+gcmaps() {
+    git add .
+    if [ "$1" != "" ] # or better, if [ -n "$1" ]
+    then
+        git commit -m "$1"
+    else
+        git commit -m update
+    fi
+    git push
+}
+
+# Drizzle alias
+alias drstudio='npx drizzle-kit studio'
+alias drpush='npx drizzle-kit push'
+alias drpull='npx drizzle-kit pull'
+alias drgen='npx drizzle-kit generate'
+alias drmigrate='npx drizzle-kit migrate'
+
+# Docker 
+alias dps='docker ps --format="table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}"'
+alias redis='docker exec -it redis redis-cli'
+alias postgresdb='docker exec -it postgres-db psql postgres postgres'
+alias dclean='docker rmi  -f $(docker images -a --filter=dangling=true -q)'
+alias dimgs='docker image ls'
+alias dcd='docker compose down'
+alias dcl='docker compose logs -f'
+alias dcu='docker compose up -d --build'
+alias dcudev='docker compose -f docker-compose-dev.yaml up -d --build'
+alias dcd-iso-dev='docker compose -f docker-compose-iso-dev.yaml down'
+alias dcl-iso-dev='docker compose -f docker-compose-iso-dev.yaml logs -f'
+alias dcu-iso-dev='docker compose -f docker-compose-iso-dev.yaml up -d  && dcl-iso-dev'
+alias dcub-iso-dev='docker compose -f docker-compose-iso-dev.yaml up -d --build && dcl-iso-dev'
+alias dcldev='docker compose -f docker-compose-dev.yaml logs -f'
+alias dcddev='docker compose -f docker-compose-dev.yaml down'
+alias dcdwallet='docker compose  -f docker-compose.wallet.yaml down'
+alias dclw='docker compose -f docker-compose.wallet.yaml logs -f'
+alias dcwallet='docker compose -f docker-compose.wallet.yaml up --build -d && dclw'
+alias dcul='dcu && dcl'
+alias dculdev='dcudev && dcldev'
+
+#Elixir/mix /hex
+alias mdg='mix deps.get'
+alias iexphx='iex -S mix phx.server'
+alias iexmix='iex -S mix'
+alias meres='mix ecto.reset'
+alias mem='mix ecto.migrate'
+alias mpgc='mix phx.gen.context'
+alias mpgl='mix phx.gen.live'
+
+# Kubectl
+alias k='kubectl'
+alias kgall='k get all'
+alias kpods='k get pods'
+alias kapply='k apply -f'
+
+# Quarkus
+alias qkcreate='./mvnw io.quarkus:quarkus-maven-plugin:create'
+# alias qkdev='./mvnw compile quarkus:dev'
+alias qkdev='mvn compile quarkus:dev'
+alias qkbuild='rm -r target && mvn package -Dquarkus.package.type=uber-jar -Dmaven.test.skip=true'
+alias qkjar='java -jar ./target/quarkus-app/*.jar'
+
+# Java
+alias usejava8='sdk use java 8.0.372-zulu'
+
+# tmux
+alias tmn='tmux new -s $(pwd | sed "s/.*\///g")'
+alias mn='tmux new -s $(pwd | sed "s/.*\///g")'
+alias tma='tmux a'
+alias ma='tmux a'
+alias tmls='tmux ls'
+alias vim=nvim
+#alias ff='fd --type f --hidden -E node_modules -E .git -E .svelte-kit | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs zellij edit'
+
+
+# zellij
+alias ff="fd --type f --hidden -E node_modules -E .git -E .svelte-kit -E target -E .mvn | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs zellij edit"
+alias fnv="fd --type f --hidden -E node_modules -E .git -E .svelte-kit -E target -E .mvn | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs nvim edit"
+alias za='zellij attach'
+alias ze='zellij edit'
+alias zn='zellij -s $(pwd | sed "s/.*\///g")'
+alias zl='zellij list'
+alias zr='zellij run -- '
+alias zrf='zellij run --floating -- '
+
+# Spring Boot
+alias sbbuild='rm -r target && mvn clean package -Dmaven.test.skip=true'
+alias sbrun='mvn compile spring-boot:run'
+
+#unalias z 
+#z() {
+#  if [[ -z "$*" ]]; then
+#    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+#  else
+#    _last_z_args="$@"
+#    _z "$@"
+#  fi
+#}
+#
+#zz() {
+#  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+#}
+
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+gcop () {   
+    git log \
+        --color=always \
+        --format="%C(cyan)%h %C(blue)%ar%C(auto)%d \
+                  %C(yellow)%s%+b %C(black)%ae" |
+    fzf -i -e +s \
+        --reverse \
+        --tiebreak=index \
+        --no-multi \
+        --ansi \
+        --preview="echo {} |
+                    grep -o '[a-f0-9]\{7\}' |
+                    head -1 |
+                    xargs -I % sh -c 'git show --color=always % |
+                    diff-so-fancy'" \
+        --header "enter: view, C-c: copy hash" \
+        --bind "enter:execute:$_viewGitLogLine | less -R" \
+        --bind "ctrl-c:execute: $_gitLogLineToHash |
+                xclip -r -selection clipboard"
+}
