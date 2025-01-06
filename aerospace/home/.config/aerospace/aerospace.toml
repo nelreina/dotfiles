@@ -237,7 +237,7 @@ run='move-node-to-workspace A'
 
 [[on-window-detected]]
 if.app-id = 'com.electron.dockerdesktop'
-run='move-node-to-workspace Z'
+run='move-node-to-workspace D'
 
 [[on-window-detected]]
 if.app-id = 'com.anchorfree.hss-mac'
@@ -245,7 +245,7 @@ run='move-node-to-workspace Z'
 
 [[on-window-detected]]
 if.app-id = 'org.RedisLabs.RedisInsight-V2'
-run='move-node-to-workspace D'
+run='move-node-to-workspace R'
 
 
 
