@@ -163,7 +163,7 @@ alt-shift-c = 'move-node-to-workspace C' # Config AeroSpace, Yazi, NVIM ....
 alt-shift-d = 'move-node-to-workspace D' # Docker
 #alt-shift-e = 'move-node-to-workspace E'
 #alt-shift-f = 'move-node-to-workspace F'
-alt-shift-k = 'move-node-to-workspace K'
+#alt-shift-k = 'move-node-to-workspace K'
 #alt-shift-g = 'move-node-to-workspace G'
 #alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
@@ -172,7 +172,7 @@ alt-shift-m = 'move-node-to-workspace M'
 #alt-shift-p = 'move-node-to-workspace P'
 #alt-shift-q = 'move-node-to-workspace Q'
 alt-shift-r = 'move-node-to-workspace R' # Redis
-alt-shift-s = 'move-node-to-workspace S'
+#alt-shift-s = 'move-node-to-workspace S'
 #alt-shift-t = 'move-node-to-workspace T'
 alt-shift-u = 'move-node-to-workspace U' # μTorrent Web
 alt-shift-v = 'move-node-to-workspace V'
@@ -209,9 +209,9 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
-down = 'volume down'
-up = 'volume up'
-shift-down = ['volume set 0', 'mode main']
+#down = 'volume down'
+#up = 'volume up'
+#shift-down = ['volume set 0', 'mode main']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'mpv'
@@ -247,9 +247,6 @@ run='move-node-to-workspace Z'
 if.app-id = 'org.RedisLabs.RedisInsight-V2'
 run='move-node-to-workspace D'
 
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-run='move-node-to-workspace K'
 
 
 [[on-window-detected]]
