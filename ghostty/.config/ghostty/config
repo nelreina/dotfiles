@@ -12,7 +12,7 @@ keybind = global:opt+t=toggle_quick_terminal
 macos-titlebar-style = hidden
 window-padding-y=20
 window-padding-x=20
-window-save-state=always
+window-save-state=default
 
 #split-divider-color=#ffffff
 unfocused-split-fill = #4B4B4B
