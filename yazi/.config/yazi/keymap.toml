@@ -8,6 +8,10 @@ on = [ "<S-Down>" ]
 run = "seek 1"
 desc = "Peek down 5 units in the preview"
 
+[[manager.prepend_keymap]]
+on = "!"
+run = 'shell "$SHELL" --block --confirm'
+desc = "Open shell in the current directory"
 
 # Bookmarks plugin
 [[manager.prepend_keymap]]
