@@ -7,6 +7,24 @@ keybind = alt+down=goto_split:bottom
 keybind = alt+left=goto_split:left
 keybind = alt+right=goto_split:right
 keybind = cmd+z=toggle_split_zoom
+
+# TMUX Keybindings
+keybind = cmd+s=text:\x1b\x3a\x77\x0a # Send save to tmux
+keybind = cmd+d=text:\x02\x64
+keybind = cmd+shift+d=text:\x02\x22
+keybind = cmd+f=text:lfcd\n
+keybind = cmd+shift+f=text:\x02\x5b\x2f
+keybind = cmd+g=text:\x02g
+keybind = cmd+j=text:\x02\x54
+keybind = cmd+k=text:\x02s
+keybind = cmd+l=text:\x02L
+keybind = cmd+o=text:\x02u
+keybind = cmd+p=text:\x02c
+keybind = cmd+q=text:\x02\x71\x0a
+keybind = cmd+t=text:\x02c
+keybind = cmd+w=text:\x02x
+keybind = cmd+z=text:\x02z
+
 keybind = global:opt+t=toggle_quick_terminal
 
 macos-titlebar-style = hidden
