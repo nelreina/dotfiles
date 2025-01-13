@@ -22,7 +22,6 @@ keybind = cmd+p=text:\x02c
 keybind = cmd+q=text:\x02\x71\x0a
 keybind = cmd+t=text:\x02c
 keybind = cmd+w=text:\x02x
-keybind = cmd+z=text:\x02z
 
 keybind = cmd+tab=text:\02n
 keybind = cmd+comma=text:\x02,
