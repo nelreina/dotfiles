@@ -70,7 +70,7 @@ alias tcbprod='ssh -i ~/.ssh/id_nreina_work root@192.168.218.11'
 alias otrobanda='ssh -i ~/.ssh/id_nreina_work root@174.138.44.254'
 alias tcbproddb='ssh root@192.168.218.12'
 # alias bonivm='ssh root@10.166.70.136'
-alias ynodev='ssh ynohub_developer@10.10.210.227'
+alias ynodev='ssh -i ~/.ssh/id_nreina_work ynohub_developer@10.10.210.227'
 
 # GIT Alias
 alias gaa='git aa'
