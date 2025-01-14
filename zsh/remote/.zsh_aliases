@@ -1,0 +1,19 @@
+alias vnginx='sudo vim /etc/nginx/sites-available/default'
+alias zalias='vim ~/.zsh_aliases'
+alias zrel='. ~/.zsh_aliases'
+# Dcoker compose Production 
+alias dcub='docker-compose  up -d --build'
+alias dcd='docker-compose  down'
+alias dcl='docker-compose  logs -f --tail=5'
+alias dcul='dcub && dcl'
+# Dcoker compose Dev 
+alias dcub='docker-compose -f docker-compose-dev.yaml up -d --build'
+alias dcu='docker-compose -f docker-compose-prodction.yaml up -d'
+alias dcul='dcub && dcl'
+alias dcd='docker-compose -f docker-compose-dev.yaml down'
+alias dcl='docker-compose  logs -f --tail=5'
+# Tmux Aliases
+alias tmn='tmux new -s $(pwd | sed "s/.*\///g")'
+alias tma='tmux a'
+alias dps='docker ps --format="table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}"'
+alias x=exit
