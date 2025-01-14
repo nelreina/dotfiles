@@ -7,6 +7,8 @@ sudo apt update
 # Install Zsh
 echo "Installing Zsh..."
 sudo apt install -y zsh
+sudo apt install -y stow
+sudo apt install -y zoxide
 
 # Check Zsh installation
 echo "Checking Zsh installation..."
@@ -22,5 +24,8 @@ chsh -s $(which zsh)
 # Install Oh My Zsh
 echo "Installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
 echo "Installation complete. Please restart your terminal or log out and back in to start using Zsh with Oh My Zsh."
