@@ -1,5 +1,6 @@
 font-size = 20
 theme = Dark Pastel
+copy-on-select = clipboard
 
 keybind = alt+up=goto_split:top
 keybind = alt+down=goto_split:bottom
