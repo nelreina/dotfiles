@@ -1,5 +1,6 @@
 alias vnginx='sudo vim /etc/nginx/sites-available/default'
 alias zalias='vim ~/.zsh_aliases'
+alias zrc='vim ~/.zshrc'
 alias zrel='. ~/.zsh_aliases'
 # Dcoker compose Production 
 alias dcub='docker-compose  up -d --build'
