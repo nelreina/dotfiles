@@ -1,8 +1,11 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/ynohub_developer/.zsh/completions:"* ]]; then export FPATH="/home/ynohub_developer/.zsh/completions:$FPATH"; fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$HOME/.deno/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -128,3 +131,4 @@ export TERM=xterm
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+. "/home/ynohub_developer/.deno/env"[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
