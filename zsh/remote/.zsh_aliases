@@ -18,3 +18,13 @@ alias tmn='tmux new -s $(pwd | sed "s/.*\///g")'
 alias tma='tmux a'
 alias dps='docker ps --format="table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}"'
 alias x=exit
+
+function yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
