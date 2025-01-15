@@ -3,6 +3,7 @@ alias zalias='vim ~/.zsh_aliases'
 alias zrc='vim ~/.zshrc'
 alias zrel='. ~/.zsh_aliases'
 alias docker='sudo docker'
+alias lzg='lazygit'
 # Dcoker compose Production 
 alias dcub='docker compose  up -d --build'
 alias dcd='docker compose  down'
