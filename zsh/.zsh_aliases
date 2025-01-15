@@ -14,13 +14,14 @@ alias zrel='source ~/.zshrc'
 alias usage='du -h -d1'
 alias myip="curl https://ipinfo.io/json; echo"
 alias code='code . -r'
-alias zed="open -a /Applications/Zed.app -n ."
 alias whs='wormhole send'
 alias serpl='serpl --project-root .'
 #alias cd='z'
 alias lzg='lazygit'
 alias lzd='lazydocker'
 alias zz='z -'
+alias cf='copyfile'
+alias cpath='copypath'
 #alias yz='yazi'
 # bun completions
 function yz() {

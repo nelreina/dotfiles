@@ -29,24 +29,30 @@ export ELIXIR_EDITOR="code --goto __FILE__:__LINE__"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="apple"
 
-
 plugins=(
 	copyfile
 	copypath
-	docker
-	docker-compose
-	git
-	history
-	history-substring-search
-	last-working-dir
-	macos
-	python
-	web-search
-  fzf
-  fzf-tab
-	z
+  git 
+  zsh-autosuggestions 
+  zsh-syntax-highlighting 
+  fast-syntax-highlighting 
+  zsh-autocomplete
 )
-
+# plugins=(
+# 	docker
+# 	docker-compose
+# 	git
+# 	history
+# 	history-substring-search
+# 	last-working-dir
+# 	macos
+# 	python
+# 	web-search
+#   fzf
+#   fzf-tab
+# 	z
+# )
+#
 source $ZSH/oh-my-zsh.sh
 
 source $HOME/.zsh_aliases
