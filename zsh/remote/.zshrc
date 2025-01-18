@@ -131,4 +131,5 @@ export TERM=xterm
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
-. "/home/ynohub_developer/.deno/env"[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "/home/ynohub_developer/.deno/env"
+
