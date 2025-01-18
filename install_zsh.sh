@@ -17,17 +17,22 @@ if [ -z "$(which zsh)" ]; then
   exit 1
 fi
 
-# Set Zsh as the default shell
-echo "Changing default shell to Zsh..."
-chsh -s $(which zsh)
-
 # Install Oh My Zsh
 echo "Installing Oh My Zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+rm ~/.zshrc
+rm ~/.tmux.conf
+cd zsh
+stow -t ~ remote
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+
+# Set Zsh as the default shell
+echo "Changing default shell to Zsh..."
+chsh -s $(which zsh)
 
 echo "Installation complete. Please restart your terminal or log out and back in to start using Zsh with Oh My Zsh."
