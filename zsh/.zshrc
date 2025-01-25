@@ -108,7 +108,7 @@ eval "$(fzf --zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#. "/Users/nelsonreina/.deno/env"
+. "/Users/nelsonreina/.deno/env"
 # Initialize zsh completions (added by deno install script)
 autoload -Uz compinit
 compinit
