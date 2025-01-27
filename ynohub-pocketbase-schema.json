@@ -1826,6 +1826,20 @@
       {
         "autogeneratePattern": "",
         "hidden": false,
+        "id": "text454430759",
+        "max": 0,
+        "min": 0,
+        "name": "protocolPathMove",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
         "id": "text2676752851",
         "max": 0,
         "min": 0,
@@ -1879,6 +1893,35 @@
           "multipart/form-data",
           "text/csv",
           "text/plain"
+        ]
+      },
+      {
+        "hidden": false,
+        "id": "select3911926048",
+        "maxSelect": 1,
+        "name": "readMimeType",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "json",
+          "xml",
+          "swift"
+        ]
+      },
+      {
+        "hidden": false,
+        "id": "select203695656",
+        "maxSelect": 1,
+        "name": "readModule",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "RTGSHUB",
+          "ISOHUB"
         ]
       },
       {
