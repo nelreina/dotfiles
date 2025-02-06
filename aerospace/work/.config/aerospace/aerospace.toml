@@ -98,10 +98,14 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-ctrl-alt-shift-cmd-left = 'focus left'
-ctrl-alt-shift-cmd-down = 'focus down'
-ctrl-alt-shift-cmd-up = 'focus up'
-ctrl-alt-shift-cmd-right = 'focus right'
+ctrl-left = 'focus left'
+ctrl-down = 'focus down'
+ctrl-up = 'focus up'
+ctrl-right = 'focus right'
+alt-shift-semicolon = 'mode service'
+ctrl-alt-shift-cmd-right = 'workspace next'
+ctrl-alt-shift-cmd-left = 'workspace prev'
+
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-leftSquareBracket = 'move left'
@@ -126,21 +130,21 @@ alt-a = 'workspace A' # Alacrity
 ctrl-alt-shift-cmd-space = 'workspace A'
 alt-b = 'workspace B' # Browser
 alt-c = 'workspace C' # Code
-alt-d = 'workspace D' # Docker 
+alt-d = 'workspace D' # Data Grip / Docker
 #alt-e = 'workspace E' 
 #alt-f = 'workspace F' 
-alt-k = 'workspace K' # Kitty Terminal
+#alt-k = 'workspace K' # Kitty Terminal
 #alt-g = 'workspace G' 
 #alt-i = 'workspace I'  
-alt-m = 'workspace M' # Media Player
+alt-m = 'workspace M' # Mail and Messenge
 #alt-n = 'workspace N' 
 #alt-o = 'workspace O' 
-#alt-p = 'workspace P' 
+alt-p = 'workspace P' # Perplexity 
 #alt-q = 'workspace Q' 
 alt-r = 'workspace R' # RBL  
 alt-s = 'workspace S' # Data Grip / Redis
 #alt-t = 'workspace T' 
-alt-u = 'workspace U' # Google  Chrome
+alt-u = 'workspace U' # UAT
 alt-v = 'workspace V' # VET  
 #alt-w = 'workspace W' 
 #alt-x = 'workspace XA' 
@@ -163,13 +167,13 @@ alt-shift-c = 'move-node-to-workspace C' # Config AeroSpace, Yazi, NVIM ....
 alt-shift-d = 'move-node-to-workspace D' # Docker
 #alt-shift-e = 'move-node-to-workspace E'
 #alt-shift-f = 'move-node-to-workspace F'
-alt-shift-k = 'move-node-to-workspace K'
+#alt-shift-k = 'move-node-to-workspace K'
 #alt-shift-g = 'move-node-to-workspace G'
 #alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
 #alt-shift-n = 'move-node-to-workspace N'
 #alt-shift-o = 'move-node-to-workspace O'
-#alt-shift-p = 'move-node-to-workspace P'
+alt-shift-p = 'move-node-to-workspace P'
 #alt-shift-q = 'move-node-to-workspace Q'
 alt-shift-r = 'move-node-to-workspace R' # Redis
 alt-shift-s = 'move-node-to-workspace S'
@@ -189,10 +193,6 @@ alt-space = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-semicolon = 'mode service'
-ctrl-right = 'workspace next'
-ctrl-left = 'workspace prev'
-
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
