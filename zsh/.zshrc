@@ -112,3 +112,5 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Initialize zsh completions (added by deno install script)
 autoload -Uz compinit
 compinit
+
+. "$HOME/.local/bin/env"

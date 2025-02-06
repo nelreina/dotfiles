@@ -43,11 +43,6 @@ alias cat='bat --style=plain'
 
 # Project utils
 alias python='python3'
-alias create-python-project='python ~/Dropbox/tools-scripts/devops/src/create-python-project.py'
-alias create-nodejs-project='python ~/Dropbox/tools-scripts/devops/src/create-nodejs-project.py'
-alias kit-add-pocketbase='python ~/Dropbox/tools-scripts/devops/src/kit-add-pocketbase.py'
-alias kit-add-docker='python ~/Dropbox/tools-scripts/devops/src/kit-add-docker.py'
-alias kit-add-my-template='python ~/Dropbox/tools-scripts/devops/src/kit-add-nelreina-template.py'
 
 alias ydmp3='yt-dlp -x --audio-format mp3' 
 
