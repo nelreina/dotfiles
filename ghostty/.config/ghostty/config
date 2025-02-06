@@ -24,6 +24,10 @@ keybind = cmd+q=text:\x02\x71\x0a
 keybind = cmd+t=text:\x02c
 #keybind = cmd+w=text:\x02x
 
+keybind = cmd+left=text:\x02\x1b[D
+keybind = cmd+right=text:\x02\x1b[C
+keybind = cmd+up=text:\x02\x1b[A
+keybind = cmd+down=text:\x02\x1b[B
 keybind = cmd+tab=text:\02n
 keybind = cmd+comma=text:\x02,
 keybind = cmd+left_bracket=text:\x02p
