@@ -23,6 +23,7 @@ keybind = cmd+p=text:\x02c
 keybind = cmd+q=text:\x02\x71\x0a
 keybind = cmd+t=text:\x02c
 keybind = cmd+x=text:\x02d
+keybind = cmd+z=text:\x02z
 
 keybind = cmd+left=text:\x02\x1b[D
 keybind = cmd+right=text:\x02\x1b[C
