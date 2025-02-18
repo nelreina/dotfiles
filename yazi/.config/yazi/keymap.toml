@@ -40,6 +40,12 @@ on = "<C-y>"
 run = ["plugin copy-file-contents"]
 desc = "Copy contents of file"
 
+# Code Editor plugin
+[[manager.prepend_keymap]]
+on   = [ "c", "o" ]
+run  = "plugin open-code-editor"
+desc = "Open In Code Editor"
+
 # Lazygit plugin
 [[manager.prepend_keymap]]
 on   = [ "g", "i" ]
