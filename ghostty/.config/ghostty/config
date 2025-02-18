@@ -18,6 +18,7 @@ keybind = cmd+g=text:\x02g
 keybind = cmd+j=text:\x02\x54
 keybind = cmd+k=text:\x02s
 keybind = cmd+shift+k=text:\x02K
+keybind = cmd+shift+t=text:\x02T
 keybind = cmd+l=text:\x02L
 keybind = cmd+o=text:\x02u
 keybind = cmd+p=text:\x02c
