@@ -28,8 +28,8 @@ keybind = cmd+r=text:\x02r
 keybind = cmd+x=text:\x02d
 keybind = cmd+z=text:\x02z
 
-keybind = cmd+shift+minus=text:\x02%
-keybind = cmd+shift+backslash=text:\x02\x22
+keybind = cmd+shift+minus=text:\x02\x22
+keybind = cmd+shift+backslash=text:\x02%
 keybind = cmd+left=text:\x02\x1b[D
 keybind = cmd+right=text:\x02\x1b[C
 keybind = cmd+up=text:\x02\x1b[A
