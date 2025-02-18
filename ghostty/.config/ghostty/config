@@ -31,6 +31,10 @@ keybind = cmd+left=text:\x02\x1b[D
 keybind = cmd+right=text:\x02\x1b[C
 keybind = cmd+up=text:\x02\x1b[A
 keybind = cmd+down=text:\x02\x1b[B
+keybind = cmd+shift+left=text:\x02h
+keybind = cmd+shift+right=text:\x02l
+keybind = cmd+shift+up=text:\x02k
+keybind = cmd+shift+down=text:\x02j
 keybind = cmd+tab=text:\02n
 keybind = cmd+comma=text:\x02,
 keybind = cmd+left_bracket=text:\x02p
