@@ -32,6 +32,7 @@ function yz() {
 	fi
 	rm -f -- "$tmp"
 }
+alias s='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder '\''Pick a sesh'\'' --prompt='\''⚡'\'')"'
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
