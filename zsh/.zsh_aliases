@@ -152,7 +152,7 @@ alias qkcreate='./mvnw io.quarkus:quarkus-maven-plugin:create'
 # alias qkdev='./mvnw compile quarkus:dev'
 alias qkdev='mvn compile quarkus:dev'
 alias qkbuild='rm -r target && mvn package -Dquarkus.package.type=uber-jar -Dmaven.test.skip=true'
-alias qkjar='java -jar ./target/quarkus-app/*.jar'
+alias qkjar='java -jar ./target/*.jar'
 
 # Java
 alias usejava8='sdk use java 8.0.372-zulu'

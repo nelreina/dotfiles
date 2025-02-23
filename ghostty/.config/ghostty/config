@@ -42,6 +42,8 @@ keybind = cmd+tab=text:\02n
 keybind = cmd+comma=text:\x02,
 keybind = cmd+left_bracket=text:\x02p
 keybind = cmd+right_bracket=text:\x02n
+keybind = cmd+alt+left=text:\x02p
+keybind = cmd+alt+right=text:\x02n
 keybind = cmd+semicolon=text:\x02:
 
 keybind = global:opt+t=toggle_quick_terminal
