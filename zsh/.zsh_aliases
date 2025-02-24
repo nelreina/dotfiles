@@ -71,6 +71,7 @@ alias tcbproddb='ssh root@192.168.218.12'
 # alias bonivm='ssh root@10.166.70.136'
 alias ynodev='ssh -i ~/.ssh/id_nreina_work ynohub_developer@10.10.210.227'
 alias ynotest='ssh -i ~/.ssh/id_nreina_work root@104.131.188.59'
+alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
 
 # GIT Alias
 alias gaa='git aa'
