@@ -1,5 +1,67 @@
-[plugin]
-deps = [{ use = "dedukun/bookmarks", rev = "20ece7e" }, { use = "Ape/mediainfo", rev = "c69314e" }, { use = "AnirudhG07/plugins-yazi:copy-file-contents", rev = "11167e1" }, { use = "Lil-Dank/lazygit", rev = "c82794f" }, { use = "Rolv-Apneseth/bypass", rev = "6c5414f" }, { use = "yazi-rs/plugins:max-preview", rev = "7afba3a" }, { use = "yazi-rs/plugins:git", rev = "7afba3a" }, { use = "Ape/simple-status", rev = "709f653" }, { use = "yazi-rs/plugins:full-border", rev = "7afba3a" }, { use = "Rolv-Apneseth/starship", rev = "247f49d" }, { use = "AnirudhG07/custom-shell", rev = "d7fb2b3" }, { use = "Reledia/miller", rev = "40e0265" }, { use = "AnirudhG07/rich-preview", rev = "8be4d27" }]
+[[plugin.deps]]
+use = "dedukun/bookmarks"
+rev = "20ece7e"
+hash = "f1e214311e1c92ce53d35ea3254033c7"
+
+[[plugin.deps]]
+use = "Ape/mediainfo"
+rev = "c69314e"
+hash = ""
+
+[[plugin.deps]]
+use = "AnirudhG07/plugins-yazi:copy-file-contents"
+rev = "11167e1"
+hash = "27c50e6bc15c09096505b805b238ade0"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "c82794f"
+hash = "2b0c33928986f126d5c5a4cac31a6b46"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/bypass"
+rev = "6c5414f"
+hash = "905054b2df08ff79af223e0b6f249fa3"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:max-preview"
+rev = "7afba3a"
+hash = "9bc26d10d2f6e2aa93b10905b1b76979"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "7afba3a"
+hash = "47d8513034b81ee8ae814e36e455bfa7"
+
+[[plugin.deps]]
+use = "Ape/simple-status"
+rev = "709f653"
+hash = ""
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "7afba3a"
+hash = "3a73613fc702a5f8369791b3401f52f1"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "247f49d"
+hash = "f450a5f0b5d067f1a749dcec92293615"
+
+[[plugin.deps]]
+use = "AnirudhG07/custom-shell"
+rev = "d7fb2b3"
+hash = "c1e768e199e1ce331b0c1b4203982dc7"
+
+[[plugin.deps]]
+use = "Reledia/miller"
+rev = "40e0265"
+hash = ""
+
+[[plugin.deps]]
+use = "AnirudhG07/rich-preview"
+rev = "8be4d27"
+hash = "c9a3d0731e7d7340e2c6d6126b1f3aa3"
 
 [flavor]
 deps = []

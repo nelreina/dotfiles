@@ -48,7 +48,6 @@ alias python='python3'
 alias ydmp3='yt-dlp -x --audio-format mp3' 
 
 # LCM
-alias lcmp='ssh root@165.227.76.35'
 
 # IBIS VMS
 alias ctzen='ssh root@157.245.243.3'    
@@ -73,6 +72,13 @@ alias ynodev='ssh -i ~/.ssh/id_nreina_work ynohub_developer@10.10.210.227'
 alias ynotest='ssh -i ~/.ssh/id_nreina_work root@104.131.188.59'
 alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
 
+# Client VMS
+alias lcmpb='ssh -i ~/.ssh/id_nreinamm root@142.93.73.130'
+alias lcmsrv='ssh -i ~/.ssh/id_nreinamm root@165.227.76.35'
+# 165.227.76.35
+#
+#
+#
 # GIT Alias
 alias gaa='git aa'
 alias gbr='git br'
@@ -131,7 +137,7 @@ alias dcub-iso-scale='docker compose -f docker-compose-iso-scale.yaml up -d --bu
 alias dcl-dev='docker compose -f docker-compose-dev.yaml logs -f'
 alias dcd-dev='docker compose -f docker-compose-dev.yaml down'
 alias dcul='dcu && dcl'
-alias dcul-dev='dcudev && dcldev'
+alias dcul-dev='dcu-dev && dcl-dev'
 
 #Elixir/mix /hex
 alias mdg='mix deps.get'
