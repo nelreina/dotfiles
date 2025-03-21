@@ -75,6 +75,7 @@ alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
 # Client VMS
 alias lcmpb='ssh -i ~/.ssh/id_nreinamm root@142.93.73.130'
 alias lcmsrv='ssh -i ~/.ssh/id_nreinamm root@165.227.76.35'
+alias wpodm='ssh -i ~/.ssh/id_nreinamm root@138.197.82.129'
 # 165.227.76.35
 #
 #

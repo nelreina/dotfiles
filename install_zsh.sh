@@ -31,7 +31,7 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZS
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
 
 # Set Zsh as the default shell
-echo "Changing default shell to Zsh..."
-chsh -s $(which zsh)
+# echo "Changing default shell to Zsh..."
+# chsh -s $(which zsh)
 
 echo "Installation complete. Please restart your terminal or log out and back in to start using Zsh with Oh My Zsh."

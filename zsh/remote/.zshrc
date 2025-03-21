@@ -127,9 +127,9 @@ export NVM_DIR="$HOME/.nvm"
 
 
 export TERM=xterm
-
+export EDITOR=vim
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
-. "/home/ynohub_developer/.deno/env"
+. "~/.deno/env"
 
