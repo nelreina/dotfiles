@@ -914,7 +914,7 @@
           "xml",
           "swift",
           "json",
-          "text"
+          "txt"
         ]
       },
       {
@@ -967,14 +967,14 @@
       },
       {
         "cascadeDelete": false,
-        "collectionId": "pbc_2368607310",
+        "collectionId": "pbc_3219405885",
         "hidden": false,
-        "id": "relation4168246061",
+        "id": "relation203695656",
         "maxSelect": 1,
         "minSelect": 0,
-        "name": "targetSystem",
+        "name": "module",
         "presentable": false,
-        "required": true,
+        "required": false,
         "system": false,
         "type": "relation"
       },
@@ -991,34 +991,6 @@
         "required": true,
         "system": false,
         "type": "text"
-      },
-      {
-        "autogeneratePattern": "",
-        "hidden": false,
-        "id": "text2002449650",
-        "max": 0,
-        "min": 0,
-        "name": "ynoPaymentRef",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": false,
-        "system": false,
-        "type": "text"
-      },
-      {
-        "hidden": false,
-        "id": "select2298126720",
-        "maxSelect": 1,
-        "name": "paymentFlow",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "select",
-        "values": [
-          "INCOMING",
-          "OUTGOING"
-        ]
       },
       {
         "autogeneratePattern": "",
@@ -1069,6 +1041,60 @@
         "max": 0,
         "min": 0,
         "name": "errorMessage",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "select2298126720",
+        "maxSelect": 1,
+        "name": "paymentFlow",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "INCOMING",
+          "OUTGOING"
+        ]
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_2368607310",
+        "hidden": false,
+        "id": "relation4168246061",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "sender",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "relation"
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_2368607310",
+        "hidden": false,
+        "id": "relation1035504790",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "receiver",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "relation"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text2002449650",
+        "max": 0,
+        "min": 0,
+        "name": "ynoPaymentRef",
         "pattern": "",
         "presentable": false,
         "primaryKey": false,
@@ -1485,7 +1511,9 @@
           "FILE",
           "FTP",
           "SFTP",
-          "HTTP"
+          "HTTP",
+          "SMTP",
+          "JMS"
         ]
       },
       {
@@ -1583,138 +1611,13 @@
     "system": false
   },
   {
-    "id": "pbc_2397132699",
-    "listRule": null,
-    "viewRule": null,
-    "createRule": null,
-    "updateRule": null,
-    "deleteRule": null,
-    "name": "target_system_params",
-    "type": "base",
-    "fields": [
-      {
-        "autogeneratePattern": "[a-z0-9]{15}",
-        "hidden": false,
-        "id": "text3208210256",
-        "max": 15,
-        "min": 15,
-        "name": "id",
-        "pattern": "^[a-z0-9]+$",
-        "presentable": false,
-        "primaryKey": true,
-        "required": true,
-        "system": true,
-        "type": "text"
-      },
-      {
-        "cascadeDelete": false,
-        "collectionId": "pbc_2368607310",
-        "hidden": false,
-        "id": "relation3225941563",
-        "maxSelect": 1,
-        "minSelect": 0,
-        "name": "targetSystem",
-        "presentable": false,
-        "required": true,
-        "system": false,
-        "type": "relation"
-      },
-      {
-        "autogeneratePattern": "",
-        "hidden": false,
-        "id": "text1542800728",
-        "max": 0,
-        "min": 0,
-        "name": "field",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": true,
-        "system": false,
-        "type": "text"
-      },
-      {
-        "hidden": false,
-        "id": "select2668773011",
-        "maxSelect": 1,
-        "name": "fieldType",
-        "presentable": false,
-        "required": true,
-        "system": false,
-        "type": "select",
-        "values": [
-          "BOOL",
-          "TEXT",
-          "JSON"
-        ]
-      },
-      {
-        "autogeneratePattern": "",
-        "hidden": false,
-        "id": "text494360628",
-        "max": 0,
-        "min": 0,
-        "name": "value",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": false,
-        "system": false,
-        "type": "text"
-      },
-      {
-        "hidden": false,
-        "id": "json2918445923",
-        "maxSize": 0,
-        "name": "data",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "json"
-      },
-      {
-        "hidden": false,
-        "id": "bool2452328285",
-        "name": "addToMapping",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "bool"
-      },
-      {
-        "hidden": false,
-        "id": "autodate2990389176",
-        "name": "created",
-        "onCreate": true,
-        "onUpdate": false,
-        "presentable": false,
-        "system": false,
-        "type": "autodate"
-      },
-      {
-        "hidden": false,
-        "id": "autodate3332085495",
-        "name": "updated",
-        "onCreate": true,
-        "onUpdate": true,
-        "presentable": false,
-        "system": false,
-        "type": "autodate"
-      }
-    ],
-    "indexes": [
-      "CREATE UNIQUE INDEX `idx_3ZNUZVrhKK` ON `target_system_params` (\n  `targetSystem`,\n  `field`\n)"
-    ],
-    "system": false
-  },
-  {
     "id": "pbc_2368607310",
     "listRule": null,
     "viewRule": null,
     "createRule": null,
     "updateRule": null,
     "deleteRule": null,
-    "name": "target_systems",
+    "name": "system_registry",
     "type": "base",
     "fields": [
       {
@@ -1758,6 +1661,33 @@
         "required": false,
         "system": false,
         "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text3727479181",
+        "max": 0,
+        "min": 0,
+        "name": "systemExternalId",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_3219405885",
+        "hidden": false,
+        "id": "relation203695656",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "module",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "relation"
       },
       {
         "hidden": false,
@@ -1912,17 +1842,126 @@
       },
       {
         "hidden": false,
-        "id": "select203695656",
-        "maxSelect": 1,
-        "name": "readModule",
+        "id": "autodate2990389176",
+        "name": "created",
+        "onCreate": true,
+        "onUpdate": false,
         "presentable": false,
-        "required": false,
+        "system": false,
+        "type": "autodate"
+      },
+      {
+        "hidden": false,
+        "id": "autodate3332085495",
+        "name": "updated",
+        "onCreate": true,
+        "onUpdate": true,
+        "presentable": false,
+        "system": false,
+        "type": "autodate"
+      }
+    ],
+    "indexes": [],
+    "system": false
+  },
+  {
+    "id": "pbc_2397132699",
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "name": "system_registry_params",
+    "type": "base",
+    "fields": [
+      {
+        "autogeneratePattern": "[a-z0-9]{15}",
+        "hidden": false,
+        "id": "text3208210256",
+        "max": 15,
+        "min": 15,
+        "name": "id",
+        "pattern": "^[a-z0-9]+$",
+        "presentable": false,
+        "primaryKey": true,
+        "required": true,
+        "system": true,
+        "type": "text"
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_2368607310",
+        "hidden": false,
+        "id": "relation3225941563",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "system",
+        "presentable": false,
+        "required": true,
+        "system": false,
+        "type": "relation"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text1542800728",
+        "max": 0,
+        "min": 0,
+        "name": "field",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": true,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "select2668773011",
+        "maxSelect": 1,
+        "name": "fieldType",
+        "presentable": false,
+        "required": true,
         "system": false,
         "type": "select",
         "values": [
-          "RTGSHUB",
-          "ISOHUB"
+          "BOOL",
+          "TEXT",
+          "JSON"
         ]
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text494360628",
+        "max": 0,
+        "min": 0,
+        "name": "value",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "json2918445923",
+        "maxSize": 0,
+        "name": "data",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "json"
+      },
+      {
+        "hidden": false,
+        "id": "bool2452328285",
+        "name": "addToMapping",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
       },
       {
         "hidden": false,
@@ -1945,7 +1984,9 @@
         "type": "autodate"
       }
     ],
-    "indexes": [],
+    "indexes": [
+      "CREATE UNIQUE INDEX `idx_3ZNUZVrhKK` ON `system_registry_params` (\n  `system`,\n  `field`\n)"
+    ],
     "system": false
   },
   {
@@ -2195,14 +2236,14 @@
       },
       {
         "cascadeDelete": false,
-        "collectionId": "pbc_2368607310",
+        "collectionId": "pbc_3219405885",
         "hidden": false,
-        "id": "relation4168246061",
+        "id": "relation203695656",
         "maxSelect": 1,
         "minSelect": 0,
-        "name": "targetSystem",
+        "name": "module",
         "presentable": false,
-        "required": false,
+        "required": true,
         "system": false,
         "type": "relation"
       },
@@ -2235,8 +2276,22 @@
           "iphub_pacs002",
           "iphub_pacs004",
           "iphub_outgoing_recall",
-          "iphub_incoming_recall"
+          "iphub_incoming_recall",
+          "MT202"
         ]
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_2368607310",
+        "hidden": false,
+        "id": "relation3377271179",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "system",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "relation"
       },
       {
         "autogeneratePattern": "",
@@ -2337,8 +2392,102 @@
       }
     ],
     "indexes": [
-      "CREATE UNIQUE INDEX `idx_wWtOENnIVk` ON `yno_mapping` (\n  `targetSystem`,\n  `messageType`,\n  `field`\n)"
+      "CREATE INDEX `idx_bLuh2sfZ42` ON `yno_mapping` (\n  `module`,\n  `messageType`,\n  `field`,\n  `system`\n)"
     ],
+    "system": false
+  },
+  {
+    "id": "pbc_3219405885",
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "name": "yno_modules",
+    "type": "base",
+    "fields": [
+      {
+        "autogeneratePattern": "[a-z0-9]{15}",
+        "hidden": false,
+        "id": "text3208210256",
+        "max": 15,
+        "min": 15,
+        "name": "id",
+        "pattern": "^[a-z0-9]+$",
+        "presentable": false,
+        "primaryKey": true,
+        "required": true,
+        "system": true,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text1997877400",
+        "max": 0,
+        "min": 0,
+        "name": "code",
+        "pattern": "",
+        "presentable": true,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text1843675174",
+        "max": 0,
+        "min": 0,
+        "name": "description",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "bool1260321794",
+        "name": "active",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
+      },
+      {
+        "hidden": false,
+        "id": "bool2762137830",
+        "name": "iso20022",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
+      },
+      {
+        "hidden": false,
+        "id": "autodate2990389176",
+        "name": "created",
+        "onCreate": true,
+        "onUpdate": false,
+        "presentable": false,
+        "system": false,
+        "type": "autodate"
+      },
+      {
+        "hidden": false,
+        "id": "autodate3332085495",
+        "name": "updated",
+        "onCreate": true,
+        "onUpdate": true,
+        "presentable": false,
+        "system": false,
+        "type": "autodate"
+      }
+    ],
+    "indexes": [],
     "system": false
   },
   {
@@ -2367,12 +2516,12 @@
       },
       {
         "cascadeDelete": false,
-        "collectionId": "pbc_2368607310",
+        "collectionId": "pbc_3219405885",
         "hidden": false,
-        "id": "relation4168246061",
+        "id": "relation203695656",
         "maxSelect": 1,
         "minSelect": 0,
-        "name": "targetSystem",
+        "name": "module",
         "presentable": false,
         "required": true,
         "system": false,
@@ -2382,14 +2531,87 @@
         "hidden": false,
         "id": "select2596492324",
         "maxSelect": 1,
-        "name": "messageType",
+        "name": "fromMessageType",
         "presentable": false,
         "required": true,
         "system": false,
         "type": "select",
         "values": [
+          "MT202",
           "MT103",
-          "pacs008"
+          "pacs008",
+          "pacs002",
+          "camt045",
+          "pacs004",
+          "pacs009"
+        ]
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text1110533338",
+        "max": 0,
+        "min": 0,
+        "name": "BIC",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "select2527914584",
+        "maxSelect": 1,
+        "name": "paymentFlow",
+        "presentable": false,
+        "required": true,
+        "system": false,
+        "type": "select",
+        "values": [
+          "INCOMING",
+          "OUTGOING"
+        ]
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_2368607310",
+        "hidden": false,
+        "id": "relation4168246061",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "sender",
+        "presentable": false,
+        "required": true,
+        "system": false,
+        "type": "relation"
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_2368607310",
+        "hidden": false,
+        "id": "relation1035504790",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "receiver",
+        "presentable": false,
+        "required": true,
+        "system": false,
+        "type": "relation"
+      },
+      {
+        "hidden": false,
+        "id": "select25279145842",
+        "maxSelect": 1,
+        "name": "messageFlow",
+        "presentable": false,
+        "required": true,
+        "system": false,
+        "type": "select",
+        "values": [
+          "ORIGINAL",
+          "RESPONSE"
         ]
       },
       {
@@ -2410,7 +2632,7 @@
         "minSelect": 0,
         "name": "project",
         "presentable": false,
-        "required": true,
+        "required": false,
         "system": false,
         "type": "relation"
       },
@@ -2423,37 +2645,23 @@
         "minSelect": 0,
         "name": "template",
         "presentable": false,
-        "required": true,
+        "required": false,
         "system": false,
         "type": "relation"
       },
       {
+        "autogeneratePattern": "",
         "hidden": false,
-        "id": "select2527914584",
-        "maxSelect": 1,
-        "name": "paymentFlow",
+        "id": "text77561381",
+        "max": 0,
+        "min": 0,
+        "name": "filenameExpression",
+        "pattern": "",
         "presentable": false,
-        "required": true,
+        "primaryKey": false,
+        "required": false,
         "system": false,
-        "type": "select",
-        "values": [
-          "INCOMING",
-          "OUTGOING"
-        ]
-      },
-      {
-        "hidden": false,
-        "id": "select25279145842",
-        "maxSelect": 1,
-        "name": "messageFlow",
-        "presentable": false,
-        "required": true,
-        "system": false,
-        "type": "select",
-        "values": [
-          "ORIGINAL",
-          "RESPONSE"
-        ]
+        "type": "text"
       },
       {
         "hidden": false,
@@ -2476,7 +2684,9 @@
         "type": "autodate"
       }
     ],
-    "indexes": [],
+    "indexes": [
+      "CREATE INDEX `idx_thDLzC1bhi` ON `yno_routing_rules` (\n  `module`,\n  `fromMessageType`,\n  `BIC`\n)"
+    ],
     "system": false
   },
   {
@@ -2505,12 +2715,12 @@
       },
       {
         "cascadeDelete": false,
-        "collectionId": "pbc_2368607310",
+        "collectionId": "pbc_3219405885",
         "hidden": false,
-        "id": "relation3225941563",
+        "id": "relation203695656",
         "maxSelect": 1,
         "minSelect": 0,
-        "name": "targetSystem",
+        "name": "module",
         "presentable": false,
         "required": false,
         "system": false,
@@ -2608,7 +2818,7 @@
       }
     ],
     "indexes": [
-      "CREATE UNIQUE INDEX `idx_aNNRSOPH8f` ON `yno_validation` (\n  `targetSystem`,\n  `field`,\n  `messageType`\n)"
+      "CREATE INDEX `idx_7BjZuuKDFC` ON `yno_validation` (\n  `module`,\n  `messageType`,\n  `field`\n)"
     ],
     "system": false
   }

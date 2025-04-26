@@ -1,0 +1,9 @@
+
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+
+ssh hblalchemy@172.16.10.83
+
+
+git clone https://github.com/ibis-management/ynohub.git
+
+
