@@ -2046,7 +2046,8 @@
           "TIMESTAMP_ZULU",
           "TIMESTAMP_OFFSET",
           "TODAY",
-          "BOOLEAN"
+          "BOOLEAN",
+          "GENERATE_ID"
         ]
       },
       {
