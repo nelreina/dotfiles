@@ -2259,26 +2259,19 @@
         "type": "select",
         "values": [
           "ALL",
-          "B2B",
-          "B2C",
-          "C2B",
-          "C2C",
           "MT103",
           "M1192",
           "MT196",
           "MT198",
+          "MT202",
+          "camt029",
+          "camt056",
           "pacs002",
           "pacs002_confirmation",
           "pacs002_cancellation",
           "pacs004",
           "pacs008",
-          "camt029",
-          "camt056",
-          "iphub_pacs002",
-          "iphub_pacs004",
-          "iphub_outgoing_recall",
-          "iphub_incoming_recall",
-          "MT202"
+          "pacs009"
         ]
       },
       {
