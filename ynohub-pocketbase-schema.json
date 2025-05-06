@@ -2815,5 +2815,153 @@
       "CREATE INDEX `idx_7BjZuuKDFC` ON `yno_validation` (\n  `module`,\n  `messageType`,\n  `field`\n)"
     ],
     "system": false
+  },
+  {
+    "id": "pbc_168571154",
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "name": "paymentStats",
+    "type": "view",
+    "fields": [
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text3208210256",
+        "max": 0,
+        "min": 0,
+        "name": "id",
+        "pattern": "^[a-z0-9]+$",
+        "presentable": false,
+        "primaryKey": true,
+        "required": true,
+        "system": true,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "_clone_yTA3",
+        "max": 0,
+        "min": 0,
+        "name": "code",
+        "pattern": "",
+        "presentable": true,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "_clone_4cFD",
+        "maxSelect": 1,
+        "name": "paymentFlow",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "INCOMING",
+          "OUTGOING"
+        ]
+      },
+      {
+        "hidden": false,
+        "id": "number2245608546",
+        "max": null,
+        "min": null,
+        "name": "count",
+        "onlyInt": false,
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "number"
+      }
+    ],
+    "indexes": [],
+    "system": false,
+    "viewQuery": "SELECT (ROW_NUMBER() OVER()) as id\n   ,      m.code\n   ,      paymentFlow\n  ,       count(*) as count\n       \nfrom payments as p\n,    yno_modules as m\nwhere p.module = m.id\ngroup by m.code, paymentFlow"
+  },
+  {
+    "id": "pbc_2873058778",
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "name": "paymentsPerDate",
+    "type": "view",
+    "fields": [
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text3208210256",
+        "max": 0,
+        "min": 0,
+        "name": "id",
+        "pattern": "^[a-z0-9]+$",
+        "presentable": false,
+        "primaryKey": true,
+        "required": true,
+        "system": true,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "_clone_rhiD",
+        "max": 0,
+        "min": 0,
+        "name": "code",
+        "pattern": "",
+        "presentable": true,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "json1889812618",
+        "maxSize": 1,
+        "name": "paymentDate",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "json"
+      },
+      {
+        "hidden": false,
+        "id": "_clone_XNbx",
+        "maxSelect": 1,
+        "name": "paymentFlow",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "INCOMING",
+          "OUTGOING"
+        ]
+      },
+      {
+        "hidden": false,
+        "id": "number3257917790",
+        "max": null,
+        "min": null,
+        "name": "total",
+        "onlyInt": false,
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "number"
+      }
+    ],
+    "indexes": [],
+    "system": false,
+    "viewQuery": "SELECT (ROW_NUMBER() OVER()) as id\n  ,     m.code\n,       date(p.created) as paymentDate\n,       paymentFlow\n,      count(*) as total\n       \n  from payments as p \n  , yno_modules as m\nwhere p.module = m.id\nGROUP by m.code, date(p.created), paymentFlow\norder by 3 desc\n"
   }
 ]
