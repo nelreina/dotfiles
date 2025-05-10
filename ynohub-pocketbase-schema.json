@@ -1031,7 +1031,8 @@
           "NEW",
           "ACCP",
           "RJCT",
-          "UNDELIVERED"
+          "UNDELIVERED",
+          "SENT"
         ]
       },
       {
@@ -2265,6 +2266,7 @@
           "MT198",
           "MT202",
           "camt029",
+          "camt054",
           "camt056",
           "pacs002",
           "pacs002_confirmation",
@@ -2536,6 +2538,7 @@
           "pacs008",
           "pacs002",
           "camt045",
+          "camt054",
           "pacs004",
           "pacs009"
         ]
