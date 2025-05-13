@@ -1032,7 +1032,8 @@
           "ACCP",
           "RJCT",
           "UNDELIVERED",
-          "SENT"
+          "SENT",
+          "RETURN"
         ]
       },
       {
@@ -2608,7 +2609,8 @@
         "type": "select",
         "values": [
           "ORIGINAL",
-          "RESPONSE"
+          "RESPONSE",
+          "RETURN"
         ]
       },
       {
