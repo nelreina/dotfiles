@@ -828,19 +828,6 @@
         "type": "text"
       },
       {
-        "cascadeDelete": false,
-        "collectionId": "pbc_2368607310",
-        "hidden": false,
-        "id": "relation3377271179",
-        "maxSelect": 1,
-        "minSelect": 0,
-        "name": "system",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "relation"
-      },
-      {
         "autogeneratePattern": "",
         "hidden": false,
         "id": "text1997877400",
@@ -909,6 +896,20 @@
       },
       {
         "hidden": false,
+        "id": "select2676752505",
+        "maxSelect": 2,
+        "name": "checks",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "ACCOUNT",
+          "COMPLIANCE"
+        ]
+      },
+      {
+        "hidden": false,
         "id": "autodate2990389176",
         "name": "created",
         "onCreate": true,
@@ -928,9 +929,7 @@
         "type": "autodate"
       }
     ],
-    "indexes": [
-      "CREATE UNIQUE INDEX `idx_6fwOLwMG5b` ON `message_types` (\n  `system`,\n  `entry`\n)"
-    ],
+    "indexes": [],
     "system": false
   },
   {
@@ -1645,7 +1644,8 @@
           "SFTP",
           "HTTP",
           "SMTP",
-          "JMS"
+          "JMS",
+          "TCP"
         ]
       },
       {
@@ -2518,9 +2518,7 @@
         "type": "autodate"
       }
     ],
-    "indexes": [
-      "CREATE INDEX `idx_bLuh2sfZ42` ON `yno_mapping` (\n  `module`,\n  `messageType`,\n  `field`,\n  `system`\n)"
-    ],
+    "indexes": [],
     "system": false
   },
   {
@@ -2715,28 +2713,6 @@
         "type": "relation"
       },
       {
-        "hidden": false,
-        "id": "bool3177808253",
-        "name": "convert2ISO",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "bool"
-      },
-      {
-        "cascadeDelete": false,
-        "collectionId": "pbc_484305853",
-        "hidden": false,
-        "id": "relation800313582",
-        "maxSelect": 1,
-        "minSelect": 0,
-        "name": "project",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "relation"
-      },
-      {
         "cascadeDelete": false,
         "collectionId": "pbc_184785686",
         "hidden": false,
@@ -2752,6 +2728,29 @@
       {
         "autogeneratePattern": "",
         "hidden": false,
+        "id": "text1576047399",
+        "max": 0,
+        "min": 0,
+        "name": "mxMessageTypeVersion",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "bool754545830",
+        "name": "accountCheck",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
         "id": "text77561381",
         "max": 0,
         "min": 0,
@@ -2762,6 +2761,28 @@
         "required": false,
         "system": false,
         "type": "text"
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_484305853",
+        "hidden": false,
+        "id": "relation800313582",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "project",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "relation"
+      },
+      {
+        "hidden": false,
+        "id": "bool3177808253",
+        "name": "convert2ISO",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
       },
       {
         "hidden": false,
@@ -2949,7 +2970,7 @@
       {
         "autogeneratePattern": "",
         "hidden": false,
-        "id": "_clone_qKk8",
+        "id": "_clone_uoBe",
         "max": 0,
         "min": 0,
         "name": "code",
@@ -2962,7 +2983,7 @@
       },
       {
         "hidden": false,
-        "id": "_clone_rizk",
+        "id": "_clone_AnOZ",
         "maxSelect": 1,
         "name": "paymentFlow",
         "presentable": false,
@@ -3018,7 +3039,7 @@
       {
         "autogeneratePattern": "",
         "hidden": false,
-        "id": "_clone_axgE",
+        "id": "_clone_9u8o",
         "max": 0,
         "min": 0,
         "name": "code",
@@ -3041,7 +3062,7 @@
       },
       {
         "hidden": false,
-        "id": "_clone_P6M2",
+        "id": "_clone_VJMs",
         "maxSelect": 1,
         "name": "paymentFlow",
         "presentable": false,
