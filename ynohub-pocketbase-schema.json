@@ -804,6 +804,135 @@
     "system": true
   },
   {
+    "id": "pbc_1336036266",
+    "listRule": null,
+    "viewRule": null,
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "name": "message_types",
+    "type": "base",
+    "fields": [
+      {
+        "autogeneratePattern": "[a-z0-9]{15}",
+        "hidden": false,
+        "id": "text3208210256",
+        "max": 15,
+        "min": 15,
+        "name": "id",
+        "pattern": "^[a-z0-9]+$",
+        "presentable": false,
+        "primaryKey": true,
+        "required": true,
+        "system": true,
+        "type": "text"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text1997877400",
+        "max": 0,
+        "min": 0,
+        "name": "entry",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "select2298126720",
+        "maxSelect": 1,
+        "name": "paymentFlow",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "INCOMING",
+          "OUTGOING"
+        ]
+      },
+      {
+        "hidden": false,
+        "id": "select2527914584",
+        "maxSelect": 1,
+        "name": "messageFlow",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "ORIGINAL",
+          "RESPONSE",
+          "RETURN",
+          "CONFIRMATION"
+        ]
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
+        "id": "text2320955091",
+        "max": 0,
+        "min": 0,
+        "name": "toMessageType",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "bool1260321794",
+        "name": "active",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
+      },
+      {
+        "hidden": false,
+        "id": "select2676752505",
+        "maxSelect": 2,
+        "name": "checks",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "select",
+        "values": [
+          "ACCOUNT",
+          "COMPLIANCE"
+        ]
+      },
+      {
+        "hidden": false,
+        "id": "autodate2990389176",
+        "name": "created",
+        "onCreate": true,
+        "onUpdate": false,
+        "presentable": false,
+        "system": false,
+        "type": "autodate"
+      },
+      {
+        "hidden": false,
+        "id": "autodate3332085495",
+        "name": "updated",
+        "onCreate": true,
+        "onUpdate": true,
+        "presentable": false,
+        "system": false,
+        "type": "autodate"
+      }
+    ],
+    "indexes": [],
+    "system": false
+  },
+  {
     "id": "pbc_3085456950",
     "listRule": null,
     "viewRule": null,
@@ -1031,7 +1160,9 @@
           "NEW",
           "ACCP",
           "RJCT",
-          "UNDELIVERED"
+          "UNDELIVERED",
+          "SENT",
+          "RETURN"
         ]
       },
       {
@@ -1513,7 +1644,8 @@
           "SFTP",
           "HTTP",
           "SMTP",
-          "JMS"
+          "JMS",
+          "TCP"
         ]
       },
       {
@@ -2265,6 +2397,7 @@
           "MT198",
           "MT202",
           "camt029",
+          "camt054",
           "camt056",
           "pacs002",
           "pacs002_confirmation",
@@ -2385,9 +2518,7 @@
         "type": "autodate"
       }
     ],
-    "indexes": [
-      "CREATE INDEX `idx_bLuh2sfZ42` ON `yno_mapping` (\n  `module`,\n  `messageType`,\n  `field`,\n  `system`\n)"
-    ],
+    "indexes": [],
     "system": false
   },
   {
@@ -2536,6 +2667,7 @@
           "pacs008",
           "pacs002",
           "camt045",
+          "camt054",
           "pacs004",
           "pacs009"
         ]
@@ -2553,20 +2685,6 @@
         "required": false,
         "system": false,
         "type": "text"
-      },
-      {
-        "hidden": false,
-        "id": "select2527914584",
-        "maxSelect": 1,
-        "name": "paymentFlow",
-        "presentable": false,
-        "required": true,
-        "system": false,
-        "type": "select",
-        "values": [
-          "INCOMING",
-          "OUTGOING"
-        ]
       },
       {
         "cascadeDelete": false,
@@ -2595,42 +2713,6 @@
         "type": "relation"
       },
       {
-        "hidden": false,
-        "id": "select25279145842",
-        "maxSelect": 1,
-        "name": "messageFlow",
-        "presentable": false,
-        "required": true,
-        "system": false,
-        "type": "select",
-        "values": [
-          "ORIGINAL",
-          "RESPONSE"
-        ]
-      },
-      {
-        "hidden": false,
-        "id": "bool3177808253",
-        "name": "convert2ISO",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "bool"
-      },
-      {
-        "cascadeDelete": false,
-        "collectionId": "pbc_484305853",
-        "hidden": false,
-        "id": "relation800313582",
-        "maxSelect": 1,
-        "minSelect": 0,
-        "name": "project",
-        "presentable": false,
-        "required": false,
-        "system": false,
-        "type": "relation"
-      },
-      {
         "cascadeDelete": false,
         "collectionId": "pbc_184785686",
         "hidden": false,
@@ -2646,6 +2728,29 @@
       {
         "autogeneratePattern": "",
         "hidden": false,
+        "id": "text1576047399",
+        "max": 0,
+        "min": 0,
+        "name": "mxMessageTypeVersion",
+        "pattern": "",
+        "presentable": false,
+        "primaryKey": false,
+        "required": false,
+        "system": false,
+        "type": "text"
+      },
+      {
+        "hidden": false,
+        "id": "bool754545830",
+        "name": "accountCheck",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
+      },
+      {
+        "autogeneratePattern": "",
+        "hidden": false,
         "id": "text77561381",
         "max": 0,
         "min": 0,
@@ -2656,6 +2761,28 @@
         "required": false,
         "system": false,
         "type": "text"
+      },
+      {
+        "cascadeDelete": false,
+        "collectionId": "pbc_484305853",
+        "hidden": false,
+        "id": "relation800313582",
+        "maxSelect": 1,
+        "minSelect": 0,
+        "name": "project",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "relation"
+      },
+      {
+        "hidden": false,
+        "id": "bool3177808253",
+        "name": "convert2ISO",
+        "presentable": false,
+        "required": false,
+        "system": false,
+        "type": "bool"
       },
       {
         "hidden": false,
@@ -2843,7 +2970,7 @@
       {
         "autogeneratePattern": "",
         "hidden": false,
-        "id": "_clone_yTA3",
+        "id": "_clone_uoBe",
         "max": 0,
         "min": 0,
         "name": "code",
@@ -2856,7 +2983,7 @@
       },
       {
         "hidden": false,
-        "id": "_clone_4cFD",
+        "id": "_clone_AnOZ",
         "maxSelect": 1,
         "name": "paymentFlow",
         "presentable": false,
@@ -2912,7 +3039,7 @@
       {
         "autogeneratePattern": "",
         "hidden": false,
-        "id": "_clone_rhiD",
+        "id": "_clone_9u8o",
         "max": 0,
         "min": 0,
         "name": "code",
@@ -2935,7 +3062,7 @@
       },
       {
         "hidden": false,
-        "id": "_clone_XNbx",
+        "id": "_clone_VJMs",
         "maxSelect": 1,
         "name": "paymentFlow",
         "presentable": false,
