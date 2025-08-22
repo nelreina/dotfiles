@@ -114,3 +114,4 @@ autoload -Uz compinit
 compinit
 
 . "$HOME/.local/bin/env"
+alias claude="/Users/nelsonreina/.claude/local/claude"

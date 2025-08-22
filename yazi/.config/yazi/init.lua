@@ -20,7 +20,7 @@ require("copy-file-contents"):setup({
 	notification = true,
 })
 
-require("git"):setup()
+-- require("git"):setup()
 
 require("full-border"):setup()
 

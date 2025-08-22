@@ -18,7 +18,7 @@ return {
 			return ya.notify({ title = "Code Editor", content = "No file selected", level = "warn", timeout = 5 })
 		end
 
-		local status, err = Command("code"):arg("-r"):args(urls):spawn():wait()
+		local status, err = Command("code"):arg("-r"):arg(urls):spawn():wait()
 		if not status or not status.success then
 			ya.notify({
 				title = "Code Editor",

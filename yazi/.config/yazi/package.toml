@@ -29,24 +29,9 @@ rev = "7afba3a"
 hash = "9bc26d10d2f6e2aa93b10905b1b76979"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:git"
-rev = "7afba3a"
-hash = "47d8513034b81ee8ae814e36e455bfa7"
-
-[[plugin.deps]]
 use = "Ape/simple-status"
 rev = "709f653"
 hash = ""
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:full-border"
-rev = "7afba3a"
-hash = "3a73613fc702a5f8369791b3401f52f1"
-
-[[plugin.deps]]
-use = "Rolv-Apneseth/starship"
-rev = "247f49d"
-hash = "f450a5f0b5d067f1a749dcec92293615"
 
 [[plugin.deps]]
 use = "AnirudhG07/custom-shell"
@@ -62,6 +47,11 @@ hash = ""
 use = "AnirudhG07/rich-preview"
 rev = "8be4d27"
 hash = "c9a3d0731e7d7340e2c6d6126b1f3aa3"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "4b027c7"
+hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [flavor]
 deps = []

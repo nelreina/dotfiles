@@ -21,7 +21,6 @@ keybind = cmd+shift+k=text:\x02K
 keybind = cmd+shift+t=text:\x02T
 keybind = cmd+l=text:\x02L
 keybind = cmd+o=text:\x02u
-keybind = cmd+f=text:\x02f
 keybind = cmd+p=text:\x02c
 keybind = cmd+q=text:\x02\x71\x0a
 keybind = cmd+t=text:\x02c
@@ -59,4 +58,3 @@ unfocused-split-fill = #4B4B4B
 
 quick-terminal-autohide=true
 quick-terminal-position=bottom
-keybind = shift+enter=text:\n

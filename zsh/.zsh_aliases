@@ -47,8 +47,6 @@ alias python='python3'
 
 alias ydmp3='yt-dlp -x --audio-format mp3' 
 
-# LCM
-
 # IBIS VMS
 alias ctzen='ssh root@157.245.243.3'    
 alias ctztest='ssh root@167.71.16.63'    
@@ -75,10 +73,17 @@ alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
 # Client VMS
 alias lcmpb='ssh -i ~/.ssh/id_nreinamm root@142.93.73.130'
 alias lcmsrv='ssh -i ~/.ssh/id_nreinamm root@165.227.76.35'
+alias evancabrio='ssh -i ~/.ssh/id_nreinamm root@206.189.11.25'
 alias wpodm='ssh -i ~/.ssh/id_nreinamm root@138.197.82.129'
 # 165.227.76.35
 #
-#
+# Dotenvx
+alias dex='dotenvx'
+alias dexset='dotenvx set'
+alias dexget='dotenvx get'
+alias dexrun='dotenvx run --'
+
+
 #
 # GIT Alias
 alias gaa='git aa'
@@ -139,6 +144,8 @@ alias dcl-dev='docker compose -f docker-compose-dev.yaml logs -f'
 alias dcd-dev='docker compose -f docker-compose-dev.yaml down'
 alias dcul='dcu && dcl'
 alias dcul-dev='dcu-dev && dcl-dev'
+alias dexdcu='dotenvx run -- docker compose up -d --build'
+alias dexdcul='dotenvx run -- docker compose up -d --build && docker compose logs -f'
 
 #Elixir/mix /hex
 alias mdg='mix deps.get'
