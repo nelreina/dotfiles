@@ -28,11 +28,11 @@ use = "yazi-rs/plugins:max-preview"
 rev = "7afba3a"
 hash = "9bc26d10d2f6e2aa93b10905b1b76979"
 
-[[plugin.deps]]
-use = "yazi-rs/plugins:git"
-rev = "7afba3a"
-hash = "47d8513034b81ee8ae814e36e455bfa7"
-
+# [[plugin.deps]]
+# use = "yazi-rs/plugins:git"
+# rev = "7afba3a"
+# hash = "47d8513034b81ee8ae814e36e455bfa7"
+#
 [[plugin.deps]]
 use = "Ape/simple-status"
 rev = "709f653"

@@ -114,3 +114,7 @@ autoload -Uz compinit
 compinit
 
 . "$HOME/.local/bin/env"
+export PATH="$HOME/.local/bin:$PATH"
+
+
+alias claude="/Users/nelsonreina/.claude/local/claude"

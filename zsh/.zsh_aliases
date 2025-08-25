@@ -1,6 +1,3 @@
-# Project Location
-alias ttt='cd $HOME/Documents/SRC/ibis/tcb-tourism-tax'
-
 # General alias
 alias x='exit'
 alias runp='lsof -i '
@@ -22,6 +19,8 @@ alias lzd='lazydocker'
 alias zz='z -'
 alias cf='copyfile'
 alias cpath='copypath'
+
+alias psg='pass -c gh/ibis-nreina'
 #alias yz='yazi'
 # bun completions
 function yz() {
@@ -55,7 +54,10 @@ alias ctztest='ssh root@167.71.16.63'
 alias rbltest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.144'
 alias rbldb='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.70'
 alias rblprod='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.72'
-alias bbltest='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.57'
+alias bzbtest='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.57'
+# alias bzbprod='ssh  ibisadmin@10.11.70.55'
+alias bzbprod='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.55'
+alias bzbproddb='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.58'
 alias massyvm='ssh root@143.198.170.219'
 # alias fappivm='ssh root@167.99.126.136'
 # alias thubvm='ssh ibis@10.10.210.221'
@@ -71,16 +73,18 @@ alias tcbproddb='ssh root@192.168.218.12'
 alias ynodev='ssh -i ~/.ssh/id_nreina_work ynohub_developer@10.10.210.227'
 alias ynotest='ssh -i ~/.ssh/id_nreina_work root@104.131.188.59'
 alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
-
+alias ynodigital='ssh -i ~/.ssh/id_nreina_work root@138.197.82.129'
+alias fgbtest='ssh reinane@208.138.26.170'
 # Client VMS
 alias lcmpb='ssh -i ~/.ssh/id_nreinamm root@142.93.73.130'
 alias lcmsrv='ssh -i ~/.ssh/id_nreinamm root@165.227.76.35'
-alias wpodm='ssh -i ~/.ssh/id_nreinamm root@138.197.82.129'
+alias ynodigital_mm='ssh -i ~/.ssh/id_nreinamm root@138.197.82.129'
 # 165.227.76.35
 #
 #
 #
 # GIT Alias
+alias gwt='manage-worktree.sh'
 alias gaa='git aa'
 alias gbr='git br'
 alias gbrn='git brn'
@@ -185,9 +189,17 @@ alias zl='zellij list'
 alias zr='zellij run -- '
 alias zrf='zellij run --floating -- '
 
+# Marp CLI shortcuts
+alias mprev='marp slides.md --preview --watch'
+alias mpdf='marp slides.md --pdf'
+alias mppt='marp slides.md --pptx'
+
+
 # Spring Boot
 alias sbbuild='rm -r target && mvn clean package -Dmaven.test.skip=true'
 alias sbrun='mvn compile spring-boot:run'
+
+escape_for_json() { python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))'; }
 
 #unalias z 
 #z() {
@@ -203,31 +215,31 @@ alias sbrun='mvn compile spring-boot:run'
 #  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
 #}
 
-fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-gcop () {   
-    git log \
-        --color=always \
-        --format="%C(cyan)%h %C(blue)%ar%C(auto)%d \
-                  %C(yellow)%s%+b %C(black)%ae" |
-    fzf -i -e +s \
-        --reverse \
-        --tiebreak=index \
-        --no-multi \
-        --ansi \
-        --preview="echo {} |
-                    grep -o '[a-f0-9]\{7\}' |
-                    head -1 |
-                    xargs -I % sh -c 'git show --color=always % |
-                    diff-so-fancy'" \
-        --header "enter: view, C-c: copy hash" \
-        --bind "enter:execute:$_viewGitLogLine | less -R" \
-        --bind "ctrl-c:execute: $_gitLogLineToHash |
-                xclip -r -selection clipboard"
-}
+# fbr() {
+#   local branches branch
+#   branches=$(git branch --all | grep -v HEAD) &&
+#   branch=$(echo "$branches" |
+#            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+#   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+# }
+#
+# gcop () {   
+#     git log \
+#         --color=always \
+#         --format="%C(cyan)%h %C(blue)%ar%C(auto)%d \
+#                   %C(yellow)%s%+b %C(black)%ae" |
+#     fzf -i -e +s \
+#         --reverse \
+#         --tiebreak=index \
+#         --no-multi \
+#         --ansi \
+#         --preview="echo {} |
+#                     grep -o '[a-f0-9]\{7\}' |
+#                     head -1 |
+#                     xargs -I % sh -c 'git show --color=always % |
+#                     diff-so-fancy'" \
+#         --header "enter: view, C-c: copy hash" \
+#         --bind "enter:execute:$_viewGitLogLine | less -R" \
+#         --bind "ctrl-c:execute: $_gitLogLineToHash |
+#                 xclip -r -selection clipboard"
+# }
