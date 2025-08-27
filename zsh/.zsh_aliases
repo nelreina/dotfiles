@@ -21,6 +21,7 @@ alias cf='copyfile'
 alias cpath='copypath'
 
 alias psg='pass -c gh/ibis-nreina'
+alias pvpn='pass -c vpn/ibis/bluenap'
 #alias yz='yazi'
 # bun completions
 function yz() {
