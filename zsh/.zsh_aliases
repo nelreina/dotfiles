@@ -22,6 +22,8 @@ alias lzd='lazydocker'
 alias zz='z -'
 alias cf='copyfile'
 alias cpath='copypath'
+alias psg='pass gh/nelreina'
+
 #alias yz='yazi'
 # bun completions
 function yz() {
@@ -85,23 +87,6 @@ alias dexrun='dotenvx run --'
 
 
 #
-# GIT Alias
-alias gaa='git aa'
-alias gbr='git br'
-alias gbrn='git brn'
-alias gcma='git cma'
-alias gd='git dev'
-alias gtest='git co test'
-alias gll='git ll'
-alias gm='git merge'
-alias gma='git co main'
-alias gmd='git merge develop'
-alias gmm='git merge main'
-alias gps='git ps'
-alias gpso='git pso'
-alias gpsu='git psu'
-alias gst='git st'
-alias gtag='git tag'
 
 gcmaps() {
     git add .
@@ -163,34 +148,18 @@ alias kpods='k get pods'
 alias kapply='k apply -f'
 
 # Quarkus
-alias qkcreate='./mvnw io.quarkus:quarkus-maven-plugin:create'
-# alias qkdev='./mvnw compile quarkus:dev'
 alias qkdev='mvn compile quarkus:dev'
-alias qkbuild='rm -r target && mvn package -Dquarkus.package.type=uber-jar -Dmaven.test.skip=true'
 alias qkjar='java -jar ./target/*.jar'
 
-# Java
-alias usejava8='sdk use java 8.0.372-zulu'
 
 # tmux
 alias tmn='tmux new -s $(pwd | sed "s/.*\///g")'
 alias mn='tmux new -s $(pwd | sed "s/.*\///g")'
 alias tma='tmux a'
 alias ma='tmux a'
-alias tmls='tmux ls'
 alias vim=nvim
 #alias ff='fd --type f --hidden -E node_modules -E .git -E .svelte-kit | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs zellij edit'
 
-
-# zellij
-alias ff="fd --type f --hidden -E node_modules -E .git -E .svelte-kit -E target -E .mvn | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs zellij edit"
-alias fnv="fd --type f --hidden -E node_modules -E .git -E .svelte-kit -E target -E .mvn | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs nvim edit"
-alias za='zellij attach'
-alias ze='zellij edit'
-alias zn='zellij -s $(pwd | sed "s/.*\///g")'
-alias zl='zellij list'
-alias zr='zellij run -- '
-alias zrf='zellij run --floating -- '
 
 # Spring Boot
 alias sbbuild='rm -r target && mvn clean package -Dmaven.test.skip=true'
