@@ -33,9 +33,6 @@ function yz() {
 	rm -f -- "$tmp"
 }
 alias s='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder '\''Pick a sesh'\'' --prompt='\''⚡'\'')"'
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 alias rm='rm -rf'
@@ -77,27 +74,12 @@ alias ynotest='ssh -i ~/.ssh/id_nreina_work root@104.131.188.59'
 alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
 alias ynodigital='ssh -i ~/.ssh/id_nreina_work root@138.197.82.129'
 alias fgbtest='ssh reinane@208.138.26.170'
-# Client VMS
-alias lcmpb='ssh -i ~/.ssh/id_nreinamm root@142.93.73.130'
-alias lcmsrv='ssh -i ~/.ssh/id_nreinamm root@165.227.76.35'
-alias ynodigital_mm='ssh -i ~/.ssh/id_nreinamm root@138.197.82.129'
 # 165.227.76.35
 #
 #
 #
 # GIT Alias
 alias gwt='manage-worktree.sh'
-
-gcmaps() {
-    git add .
-    if [ "$1" != "" ] # or better, if [ -n "$1" ]
-    then
-        git commit -m "$1"
-    else
-        git commit -m update
-    fi
-    git push
-}
 
 # Drizzle alias
 alias drstudio='npx drizzle-kit studio'
