@@ -87,22 +87,6 @@ alias ynodigital_mm='ssh -i ~/.ssh/id_nreinamm root@138.197.82.129'
 #
 # GIT Alias
 alias gwt='manage-worktree.sh'
-alias gaa='git aa'
-alias gbr='git br'
-alias gbrn='git brn'
-alias gcma='git cma'
-alias gd='git dev'
-alias gtest='git co test'
-alias gll='git ll'
-alias gm='git merge'
-alias gma='git co main'
-alias gmd='git merge develop'
-alias gmm='git merge main'
-alias gps='git ps'
-alias gpso='git pso'
-alias gpsu='git psu'
-alias gst='git st'
-alias gtag='git tag'
 
 gcmaps() {
     git add .
@@ -168,13 +152,9 @@ alias qkdev='mvn compile quarkus:dev'
 alias qkbuild='rm -r target && mvn package -Dquarkus.package.type=uber-jar -Dmaven.test.skip=true'
 alias qkjar='java -jar ./target/*.jar'
 
-# Java
-alias usejava8='sdk use java 8.0.372-zulu'
 
 # tmux
-alias tmn='tmux new -s $(pwd | sed "s/.*\///g")'
 alias mn='tmux new -s $(pwd | sed "s/.*\///g")'
-alias tma='tmux a'
 alias ma='tmux a'
 alias tmls='tmux ls'
 alias vim=nvim
@@ -184,13 +164,6 @@ alias vim=nvim
 # zellij
 alias ff="fd --type f --hidden -E node_modules -E .git -E .svelte-kit -E target -E .mvn | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs zellij edit"
 alias fnv="fd --type f --hidden -E node_modules -E .git -E .svelte-kit -E target -E .mvn | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs nvim edit"
-alias za='zellij attach'
-alias ze='zellij edit'
-alias zn='zellij -s $(pwd | sed "s/.*\///g")'
-alias zl='zellij list'
-alias zr='zellij run -- '
-alias zrf='zellij run --floating -- '
-
 # Marp CLI shortcuts
 alias mprev='marp slides.md --preview --watch'
 alias mpdf='marp slides.md --pdf'
@@ -203,45 +176,3 @@ alias sbrun='mvn compile spring-boot:run'
 
 escape_for_json() { python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))'; }
 
-#unalias z 
-#z() {
-#  if [[ -z "$*" ]]; then
-#    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
-#  else
-#    _last_z_args="$@"
-#    _z "$@"
-#  fi
-#}
-#
-#zz() {
-#  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
-#}
-
-# fbr() {
-#   local branches branch
-#   branches=$(git branch --all | grep -v HEAD) &&
-#   branch=$(echo "$branches" |
-#            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-#   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-# }
-#
-# gcop () {   
-#     git log \
-#         --color=always \
-#         --format="%C(cyan)%h %C(blue)%ar%C(auto)%d \
-#                   %C(yellow)%s%+b %C(black)%ae" |
-#     fzf -i -e +s \
-#         --reverse \
-#         --tiebreak=index \
-#         --no-multi \
-#         --ansi \
-#         --preview="echo {} |
-#                     grep -o '[a-f0-9]\{7\}' |
-#                     head -1 |
-#                     xargs -I % sh -c 'git show --color=always % |
-#                     diff-so-fancy'" \
-#         --header "enter: view, C-c: copy hash" \
-#         --bind "enter:execute:$_viewGitLogLine | less -R" \
-#         --bind "ctrl-c:execute: $_gitLogLineToHash |
-#                 xclip -r -selection clipboard"
-# }
