@@ -49,28 +49,6 @@ alias python='python3'
 
 alias ydmp3='yt-dlp -x --audio-format mp3' 
 
-# IBIS VMS
-alias ctzen='ssh root@157.245.243.3'    
-alias ctztest='ssh root@167.71.16.63'    
-alias rbltest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.144'
-alias rbldb='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.70'
-alias rblprod='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.72'
-alias bbltest='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.57'
-alias massyvm='ssh root@143.198.170.219'
-# alias fappivm='ssh root@167.99.126.136'
-# alias thubvm='ssh ibis@10.10.210.221'
-alias touristtest='ssh root@159.223.9.118'
-alias gov1='ssh ibisadmin@192.168.217.11'
-alias gov2='ssh ibisadmin@192.168.217.12'
-alias bonith='ssh root@10.166.70.136'
-alias ibisth='ssh ibis@10.10.210.221'
-alias tcbprod='ssh -i ~/.ssh/id_nreina_work root@192.168.218.11'
-alias otrobanda='ssh -i ~/.ssh/id_nreina_work root@174.138.44.254'
-alias tcbproddb='ssh root@192.168.218.12'
-# alias bonivm='ssh root@10.166.70.136'
-alias ynodev='ssh -i ~/.ssh/id_nreina_work ynohub_developer@10.10.210.227'
-alias ynotest='ssh -i ~/.ssh/id_nreina_work root@104.131.188.59'
-alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
 
 # Client VMS
 alias lcmpb='ssh -i ~/.ssh/id_nreinamm root@142.93.73.130'
@@ -153,9 +131,7 @@ alias qkjar='java -jar ./target/*.jar'
 
 
 # tmux
-alias tmn='tmux new -s $(pwd | sed "s/.*\///g")'
 alias mn='tmux new -s $(pwd | sed "s/.*\///g")'
-alias tma='tmux a'
 alias ma='tmux a'
 alias vim=nvim
 #alias ff='fd --type f --hidden -E node_modules -E .git -E .svelte-kit | fzf-tmux -p --reverse  --preview 'bat --style=numbers --color=always --line-range :500 {}' | xargs zellij edit'
@@ -165,19 +141,6 @@ alias vim=nvim
 alias sbbuild='rm -r target && mvn clean package -Dmaven.test.skip=true'
 alias sbrun='mvn compile spring-boot:run'
 
-#unalias z 
-#z() {
-#  if [[ -z "$*" ]]; then
-#    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
-#  else
-#    _last_z_args="$@"
-#    _z "$@"
-#  fi
-#}
-#
-#zz() {
-#  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
-#}
 
 fbr() {
   local branches branch
