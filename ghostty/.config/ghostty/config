@@ -17,6 +17,7 @@ keybind = cmd+shift+f=text:\x02\x5b\x2f
 keybind = cmd+g=text:\x02g
 keybind = cmd+a=text:\x02a
 keybind = cmd+e=text:\x02e
+keybind = cmd+y=text:\x02y
 keybind = cmd+j=text:\x02\x54
 keybind = cmd+k=text:\x02s
 keybind = cmd+f=text:\x02f
