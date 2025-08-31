@@ -43,9 +43,13 @@
 ## which filter mode to use
 ## possible values: global, host, session, directory
 filter_mode = "directory"
-[ui]
 inline_height = 0
+search_mode = "skim"  # Try skim mode for better fuzzy matching
+show_preview = true
+inline_height = 15  # Show more results
 
+# Add workspace filtering
+workspaces = true  # 
 ## With workspace filtering enabled, Atuin will filter for commands executed
 ## in any directory within a git repository tree (default: false)
 # workspaces = false

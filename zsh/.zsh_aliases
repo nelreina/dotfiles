@@ -32,6 +32,7 @@ function yz() {
 	fi
 	rm -f -- "$tmp"
 }
+alias yt='yazi --chooser-file=/tmp/yazi-chooser && cat /tmp/yazi-chooser | xargs -I {} tmux split-window -h "nvim {}"'  # Open in new tmux pane
 alias s='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder '\''Pick a sesh'\'' --prompt='\''⚡'\'')"'
 
 
@@ -52,6 +53,7 @@ alias ctztest='ssh root@167.71.16.63'
 alias rbltest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.144'
 alias rbldb='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.70'
 alias rblprod='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.72'
+alias ecabtest='ssh -i ~/.ssh/id_nreina_work root@10.166.226.222'
 alias bzbtest='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.57'
 # alias bzbprod='ssh  ibisadmin@10.11.70.55'
 alias bzbprod='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.55'
@@ -187,4 +189,25 @@ gcop () {
         --bind "ctrl-c:execute: $_gitLogLineToHash |
                 xclip -r -selection clipboard"
 }
+
+# Quick context switching
+alias ws='aerospace list-workspaces | fzf | xargs aerospace workspace'
+
+# Better docker compose workflow
+dcr() { docker compose run --rm "$@"; }
+dcsh() { docker compose exec "${1:-app}" sh; }
+
+# Quick file editing with preview
+vf() {
+    local file
+    file=$(fd --type f --hidden -E node_modules -E .git | \
+           fzf --preview 'bat --style=numbers --color=always {}')
+    [ -n "$file" ] && nvim "$file"
+}
+
+# Project search and replace
+sra() {
+    serpl --project-root . "$1" "$2" --go
+}
+
 
