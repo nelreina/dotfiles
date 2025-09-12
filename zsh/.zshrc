@@ -12,9 +12,10 @@ fi
 export NRTOOLS="$HOME/Dropbox/tools-scripts"
 export FLUTTER="$HOME/Documents/SRC/SDK/flutter/bin"
 export ANDROID_PT=$HOME/Library/Android/sdk/platform-tools
+export XDG_CONFIG_HOME="$HOME/.config"
 
 export PYTHON="/usr/local/bin/python3"
-export PATH=$HOME/bin:/usr/local/bin:$PYTHON:$NRTOOLS:$FLUTTER:$ANDROID_PT:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PYTHON:$NRTOOLS:$FLUTTER:$ANDROID_PT:$XDG_CONFIG_HOME:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/git/bin:$PATH
 export PATH="$HOME/.bun/bin:$PATH"
