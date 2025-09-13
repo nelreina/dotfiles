@@ -3,7 +3,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
-ratio          = [ 2, 3, 4 ]
+ratio          = [ 1, 2, 5 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
 sort_reverse 	 = false
@@ -17,17 +17,28 @@ mouse_events   = [ "click", "scroll" ]
 title_format   = "Yazi: {cwd}"
 
 [preview]
-wrap            = "no"
-tab_size        = 2
-max_width       = 600
-max_height      = 900
+ wrap           = "no"
+tab_size        = 5
+max_width       = 1000
+max_height      = 1000
 cache_dir       = ""
 image_delay     = 30
-image_filter    = "triangle"
+image_filter    = "lanczos3"
 image_quality   = 75
-sixel_fraction  = 15
-ueberzug_scale  = 1
+sixel_fraction  = 10
+ueberzug_scale  = 1.0
 ueberzug_offset = [ 0, 0, 0, 0 ]
+protocol        = "kitty"
+
+[[plugin.prepend_fetchers]]
+id   = "mactag"
+name = "*"
+run  = "mactag"
+
+[[plugin.prepend_fetchers]]
+id   = "mactag"
+name = "*/"
+run  = "mactag"
 
 [opener]
 edit = [

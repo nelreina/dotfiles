@@ -13,6 +13,17 @@ on = "!"
 run = 'shell "$SHELL" --block --confirm'
 desc = "Open shell in the current directory"
 
+[[mgr.prepend_keymap]]
+on   = [ "b", "a" ]
+run  = "plugin mactag add"
+desc = "Tag selected files"
+
+[[mgr.prepend_keymap]]
+on   = [ "b", "r" ]
+run  = "plugin mactag remove"
+desc = "Untag selected files"
+
+
 # Bookmarks plugin
 [[mgr.prepend_keymap]]
 on = [ "m" ]
