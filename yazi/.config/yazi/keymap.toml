@@ -13,6 +13,10 @@ on = "!"
 run = 'shell "$SHELL" --block --confirm'
 desc = "Open shell in the current directory"
 
+[[mgr.prepend_keymap]]
+on   = ["g", "r"]
+run  = "plugin cd-git-root"
+desc = "Go to git repo root"
 # Bookmarks plugin
 [[mgr.prepend_keymap]]
 on = [ "m" ]

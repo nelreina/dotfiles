@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "dedukun/bookmarks"
-rev = "20ece7e"
-hash = "f1e214311e1c92ce53d35ea3254033c7"
+rev = "9ef1254"
+hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
 use = "Ape/mediainfo"
 rev = "c69314e"
-hash = ""
+hash = "b25c2acb08d9ca5ff5cf71ea764fed8d"
 
 [[plugin.deps]]
 use = "AnirudhG07/plugins-yazi:copy-file-contents"
@@ -28,20 +28,10 @@ use = "yazi-rs/plugins:max-preview"
 rev = "7afba3a"
 hash = "9bc26d10d2f6e2aa93b10905b1b76979"
 
-# [[plugin.deps]]
-# use = "yazi-rs/plugins:git"
-# rev = "7afba3a"
-# hash = "47d8513034b81ee8ae814e36e455bfa7"
-#
 [[plugin.deps]]
 use = "Ape/simple-status"
 rev = "709f653"
 hash = ""
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:full-border"
-rev = "7afba3a"
-hash = "3a73613fc702a5f8369791b3401f52f1"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
@@ -59,9 +49,39 @@ rev = "40e0265"
 hash = ""
 
 [[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "d7588f6"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
 use = "AnirudhG07/rich-preview"
-rev = "8be4d27"
-hash = "c9a3d0731e7d7340e2c6d6126b1f3aa3"
+rev = "843c3fa"
+hash = "b4040931f0d2f9670ddb4923e55cd881"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "d7588f6"
+hash = "63b6c222bf2103b3023389dde5e2ecfe"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "d7588f6"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
+[[plugin.deps]]
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "d7588f6"
+hash = "2143a53182dbbe935a1abd1623424aa5"
+
+[[plugin.deps]]
+use = "ciarandg/cd-git-root"
+rev = "a0e0f4b"
+hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
 
 [flavor]
 deps = []

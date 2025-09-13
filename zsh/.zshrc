@@ -29,7 +29,8 @@ export ELIXIR_EDITOR="code --goto __FILE__:__LINE__"
 
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="apple"
-
+# Eza/Exa colors - set directory color to #55F
+export EXA_COLORS="di=38;2;85;85;255"
 plugins=(
 	copyfile
 	copypath
