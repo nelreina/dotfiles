@@ -19,9 +19,13 @@ alias lzd='lazydocker'
 alias zz='z -'
 alias cf='copyfile'
 alias cpath='copypath'
-
 alias psg='pass -c gh/ibis-nreina'
 alias pvpn='pass -c vpn/ibis/bluenap'
+alias psg='pass gh/nelreina'
+alias p='pet exec'
+alias pn='pet new'
+alias pc='pet clip'
+
 #alias yz='yazi'
 # bun completions
 function yz() {
