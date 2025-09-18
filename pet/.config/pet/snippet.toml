@@ -1,0 +1,185 @@
+
+[[Snippets]]
+  Description = "docker logs container"
+  Output = ""
+  Tag = ["docker"]
+  command = "docker logs -f $(docker ps --format \"table {{.ID}}\\t{{.Names}}\\t{{.Image}}\\t{{.Status}}\" | fzf | awk '{print $1}')"
+
+[[Snippets]]
+  Description = "copy to remote"
+  Output = ""
+  Tag = ["scp"]
+  command = "scp  -i ~/.ssh/id_nreina_mm  export <file> <user: root>@<host>:/<path>"
+
+[[Snippets]]
+  Description = "give execute permision"
+  Output = ""
+  Tag = ["permision"]
+  command = "chmod -x  <file>"
+
+[[Snippets]]
+description = "Watch command output with differences highlighted"
+command = "watch -d -n <interval=2> '<command>'"
+tag = ["monitoring", "utility"]
+
+[[Snippets]]
+description = "Create quick backup with timestamp"
+command = "cp -r <source> <source>.backup.$(date +%Y%m%d_%H%M%S)"
+tag = ["backup", "files"]
+
+[[Snippets]]
+description = "HTTP server for current directory"
+command = "python3 -m http.server <port=8000>"
+tag = ["server", "utility"]
+
+[[Snippets]]
+description = "Tree with gitignore respect"
+command = "tree -I 'node_modules|.git|.svelte-kit|target|dist' -a"
+tag = ["files", "utility"]
+
+[[Snippets]]
+description = "Benchmark HTTP endpoint"
+command = "ab -n <requests=1000> -c <concurrent=10> -H 'Content-Type: application/json' <url>"
+tag = ["performance", "http"]
+
+[[Snippets]]
+description = "Load test with curl"
+command = "seq 1 <count=100> | xargs -P <parallel=10> -I {} curl -o /dev/null -s -w '%{http_code} %{time_total}\\n' <url>"
+tag = ["performance", "http"]
+
+[[Snippets]]
+description = "Memory usage by process name"
+command = "ps aux | grep <process_name> | awk '{sum+=$6} END {print sum/1024 \" MB\"}'"
+tag = ["monitoring", "memory"]
+
+[[Snippets]]
+description = "Tmux send keys to all panes"
+command = "tmux setw synchronize-panes on"
+tag = ["tmux", "productivity"]
+
+[[Snippets]]
+description = "Record terminal session"
+command = "asciinema rec <output_file>.cast"
+tag = ["terminal", "recording"]
+
+[[Snippets]]
+description = "Share tmux session read-only"
+command = "tmux -S /tmp/<socket_name> new -s <session_name> -d && chmod 755 /tmp/<socket_name>"
+tag = ["tmux", "sharing"]
+
+[[Snippets]]
+description = "Check SSL certificate expiration"
+command = "echo | openssl s_client -connect <domain>:<port=443> 2>/dev/null | openssl x509 -noout -dates"
+tag = ["ssl", "security"]
+
+[[Snippets]]
+description = "Generate SSH key"
+command = "ssh-keygen -t <type=ed25519> -C '<email>' -f ~/.ssh/<key_name>"
+tag = ["ssh", "security"]
+
+[[Snippets]]
+description = "Test SSL/TLS versions supported"
+command = "nmap --script ssl-enum-ciphers -p <port=443> <domain>"
+tag = ["ssl", "security", "audit"]
+
+[[Snippets]]
+description = "Generate secure password"
+command = "openssl rand -base64 <length=32>"
+tag = ["security", "password"]
+
+[[Snippets]]
+description = "Find and replace in multiple files"
+command = "find <path=.> -type f -name '<pattern=*.txt>' -exec sed -i '' 's/<search>/<replace>/g' {} +"
+tag = ["files", "sed"]
+
+[[Snippets]]
+description = "Convert JSON to YAML"
+command = "python -c 'import sys, yaml, json; print(yaml.dump(json.loads(sys.stdin.read())))' < <input.json>"
+tag = ["convert", "json", "yaml"]
+
+[[Snippets]]
+description = "Format JSON file with jq"
+command = "jq '.' <file.json> > formatted.json && mv formatted.json <file.json>"
+tag = ["json", "format"]
+
+[[Snippets]]
+description = "Extract specific field from JSON"
+command = "jq -r '<path=.field.subfield>' <file.json>"
+tag = ["json", "parse"]
+
+[[Snippets]]
+description = "Base64 encode/decode"
+command = "echo '<string>' | base64 <decode=-d>"
+tag = ["encoding", "base64"]
+
+[[Snippets]]
+description = "PostgreSQL dump database"
+command = "pg_dump -h <host=localhost> -U <user> -d <database> -f <output_file>.sql"
+tag = ["database", "postgres", "backup"]
+
+[[Snippets]]
+description = "MySQL dump with compression"
+command = "mysqldump -h <host=localhost> -u <user> -p<password> <database> | gzip > <database>_$(date +%Y%m%d).sql.gz"
+tag = ["database", "mysql", "backup"]
+
+[[Snippets]]
+description = "Redis monitor commands in real-time"
+command = "docker exec -it redis redis-cli -h <host=localhost> -p <port=6379> -u <user=default> -p <password> monitor"
+tag = ["database", "redis", "debug"]
+
+
+[[Snippets]]
+description = "Find large files in directory"
+command = "find <path=.> -type f -size +<size=100M> -exec ls -lh {} \\; | sort -k5 -rh"
+tag = ["system", "disk"]
+
+[[Snippets]]
+description = "Show processes using a specific port"
+command = "lsof -iTCP:<port> -sTCP:LISTEN"
+tag = ["system", "network"]
+
+[[Snippets]]
+description = "Monitor file changes in real-time"
+command = "fswatch -r <path=.> | xargs -I {} echo 'Changed: {}'"
+tag = ["system", "monitoring"]
+
+[[Snippets]]
+description = "Show network connections and listening ports"
+command = "netstat -tulpn | grep <port>"
+tag = ["system", "network"]
+
+[[Snippets]]
+description = "Find and kill process by name"
+command = "ps aux | grep <process_name> | grep -v grep | awk '{print $2}' | xargs kill -9"
+tag = ["system", "process"]
+
+[[Snippets]]
+description = "Clean up all stopped containers, unused networks, images, and build cache"
+command = "docker system prune -a --volumes -f"
+tag = ["docker", "cleanup"]
+
+[[Snippets]]
+description = "Show container resource usage statistics"
+command = "docker stats --no-stream --format 'table {{.Container}}\t{{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}\t{{.NetIO}}\t{{.BlockIO}}'"
+tag = ["docker", "monitoring"]
+
+[[Snippets]]
+description = "Execute bash in running container"
+command = "docker exec -it <container_name> /bin/bash"
+tag = ["docker", "debug"]
+
+[[Snippets]]
+description = "Copy files from container to host"
+command = "docker cp <container_name>:<container_path> <host_path>"
+tag = ["docker", "files"]
+
+[[Snippets]]
+description = "View logs with timestamps and follow"
+command = "docker logs -f --timestamps --tail <lines=100> <container_name>"
+tag = ["docker", "logs"]
+
+[[Snippets]]
+description = "Remove all volumes not used by at least one container"
+command = "docker volume prune -f"
+tag = ["docker", "cleanup"]
+
