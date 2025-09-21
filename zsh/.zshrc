@@ -117,6 +117,7 @@ compinit
 
 . "$HOME/.local/bin/env"
 export PATH="$HOME/.local/bin:$PATH"
+export BAT_CONFIG_PATH="$HOME/.config/bat/config"
 
 
 alias claude="/Users/nelsonreina/.claude/local/claude"

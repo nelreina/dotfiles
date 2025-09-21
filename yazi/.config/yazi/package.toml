@@ -1,3 +1,7 @@
+[[plugin.repos]]
+name = "bat"
+path = "plugins/bat.yazi"
+
 [[plugin.deps]]
 use = "dedukun/bookmarks"
 rev = "9ef1254"

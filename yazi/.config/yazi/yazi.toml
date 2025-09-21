@@ -92,14 +92,50 @@ prepend_previewers = [
     { name = "*.ipynb", run = "rich-preview"}, # for jupyter notebooks (.ipynb)
     { name = "*.csv", run = "duckdb" },  
     { name = "*.tsv", run = "duckdb" },  
-    { name = "*.json", run = "rich-preview" },  
     { name = "*.parquet", run = "duckdb" },  
-    { name = "*.txt", run = "duckdb" },  
+    { name = "*.txt", run = "bat" },  
     { name = "*.xlsx", run = "duckdb" },  
     { name = "*.db", run = "duckdb" },
     { name = "*.duckdb", run = "duckdb" },
     { name = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'},
-    { name = "*/", run  = 'piper -- eza -la --git  --color=always --icons=always --group-directories-first --no-quotes "$1"'},
+    { name = "*/", run  = 'piper -- eza -la --git --no-user --color=always --icons=always --group-directories-first --no-quotes "$1"'},
+   { name = "*.json", run = "bat" },
+    { name = "*.yaml", run = "bat" },
+    { name = "*.yml", run = "bat" },
+    { name = "*.toml", run = "bat" },
+    { name = "*.js", run = "bat" },
+    { name = "*.ts", run = "bat" },
+    { name = "*.jsx", run = "bat" },
+    { name = "*.tsx", run = "bat" },
+    { name = "*.py", run = "bat" },
+    { name = "*.rs", run = "bat" },
+    { name = "*.go", run = "bat" },
+    { name = "*.sh", run = "bat" },
+    { name = "*.bash", run = "bat" },
+    { name = "*.zsh", run = "bat" },
+    { name = "*.fish", run = "bat" },
+    { name = "*.vim", run = "bat" },
+    { name = "*.lua", run = "bat" },
+    { name = "*.rb", run = "bat" },
+    { name = "*.java", run = "bat" },
+    { name = "*.c", run = "bat" },
+    { name = "*.cpp", run = "bat" },
+    { name = "*.h", run = "bat" },
+    { name = "*.hpp", run = "bat" },
+    { name = "*.css", run = "bat" },
+    { name = "*.scss", run = "bat" },
+    { name = "*.html", run = "bat" },
+    { name = "*.xml", run = "rich-preview" },
+    { name = "*.sql", run = "bat" },
+    { name = "*.dockerfile", run = "bat" },
+    { name = "*Dockerfile*", run = "bat" },
+    { name = "*.conf", run = "bat" },
+    { name = "*.ini", run = "bat" },
+    { name = "*.svelte", run = "bat" },
+    { name = "*.swi", run = "bat" },
+    { name = "*.env", run = "bat" },
+    { name = "*.env*", run = "bat" },
+
 #    { name = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
 ]
 
@@ -118,9 +154,9 @@ spotters = [
 	{ name = "*/", run = "folder" },
 	# Code
 	{ mime = "text/*", run = "code" },
-	{ mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
+	{ mime = "*/{javascript,wine-extension-ini}", run = "code" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{avif,hei?,jxl,svg}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
@@ -129,7 +165,7 @@ spotters = [
 ]
 preloaders = [
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{avif,hei?,jxl,svg}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
@@ -143,11 +179,9 @@ previewers = [
 	{ name = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*", run = "code" },
-	{ mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
-	# JSON
-	{ mime = "application/{json,ndjson}", run = "json" },
+	{ mime = "*/{javascript,wine-extension-ini}", run = "code" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	{ mime = "image/{avif,hei?,jxl,svg}", run = "magick" },
 	{ mime = "image/*", run = "image" },
 	# Video
 	{ mime = "video/*", run = "video" },
