@@ -39,6 +39,7 @@ open = [
 	{ run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
 	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
 	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
+  { name = "xml-as-text", run = 'bat --style=numbers --language=txt "$1"', block = false}
 ]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
@@ -125,7 +126,9 @@ prepend_previewers = [
     { name = "*.css", run = "bat" },
     { name = "*.scss", run = "bat" },
     { name = "*.html", run = "bat" },
-    { name = "*.xml", run = "rich-preview" },
+
+     { mime = "text/xml", run = "rich" },
+     { name = "*.xml", run = "rich" },
     { name = "*.sql", run = "bat" },
     { name = "*.dockerfile", run = "bat" },
     { name = "*Dockerfile*", run = "bat" },
@@ -135,16 +138,32 @@ prepend_previewers = [
     { name = "*.swi", run = "bat" },
     { name = "*.env", run = "bat" },
     { name = "*.env*", run = "bat" },
+    { name = "*.mustache", run = "bat" },
 
 #    { name = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
 ]
+
+# ~/.config/yazi/yazi.toml
+
+
+[[open.prepend_rules]]
+mime = "text/xml"
+use = "xml-as-text"
+
+[[open.prepend_rules]] 
+mime = "application/xml"
+use = "xml-as-text"
+
+
+
 
 prepend_preloaders = [  
   { name = "*.csv", run = "duckdb", multi = false },  
   { name = "*.tsv", run = "duckdb", multi = false },  
   { name = "*.parquet", run = "duckdb", multi = false },
   { name = "*.txt", run = "duckdb", multi = false },  
-  { name = "*.xlsx", run = "duckdb", multi = false }
+  { name = "*.xlsx", run = "duckdb", multi = false },
+  { name = "*.xml", run = "rich", multi = false }
 ]
 fetchers = [
 	# Mimetype
