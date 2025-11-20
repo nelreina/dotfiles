@@ -1,4 +1,4 @@
-# General alias
+d General alias
 alias x='exit'
 alias runp='lsof -i '
 alias ll='eza -alh --icons=always'
@@ -19,8 +19,8 @@ alias lzd='lazydocker'
 alias zz='z -'
 alias cf='copyfile'
 alias cpath='copypath'
-alias psg='pass -c gh/ibis-nreina'
-alias pvpn='pass -c vpn/ibis/bluenap'
+alias psg='pass -c _/ibis/github'
+alias pvpn='pass -c _/ibis/vpn/bluenap'
 alias psg='pass gh/nelreina'
 alias p='pet exec'
 alias pn='pet new'
@@ -43,7 +43,7 @@ alias s='sesh connect "$(sesh list -i | gum filter --limit 1 --placeholder '\''P
 alias rm='rm -rf'
 alias cl='clear'
 alias cat='bat --style=plain'
-
+alias zy='z y'
 # Project utils
 alias python='python3'
 
@@ -55,12 +55,13 @@ alias ydmp3='yt-dlp -x --audio-format mp3'
 alias ctzen='ssh root@157.245.243.3'    
 alias ctztest='ssh root@167.71.16.63'    
 alias tempdeploy='ssh -i ~/.ssh/id_nreina_work root@64.225.11.5'
-alias rbltest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.144'
+# alias rbltest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.144'
+alias rbltest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.160'
 # alias fins2s='ssh -i ~/.ssh/id_nreina_work root@10.166.70.136 -t "export TERM=xterm && tmux a"'
 alias fins2s='ssh -i ~/.ssh/id_nreina_work root@10.166.70.136'
 alias rbldb='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.70'
 alias rblprod='ssh -i ~/.ssh/id_nreina_work rbl_root@10.166.241.72'
-alias ecabtest='ssh -i ~/.ssh/id_nreina_work root@10.166.226.222'
+alias ecabtest='ssh  root@10.166.226.222'
 alias bzbtest='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.57'
 # alias bzbprod='ssh  ibisadmin@10.11.70.55'
 alias bzbprod='ssh -i ~/.ssh/id_nreina_work ibisadmin@10.11.70.55'
@@ -77,13 +78,28 @@ alias tcbprod='ssh -i ~/.ssh/id_nreina_work root@192.168.218.11'
 alias otrobanda='ssh -i ~/.ssh/id_nreina_work root@174.138.44.254'
 alias tcbproddb='ssh root@192.168.218.12'
 # alias bonivm='ssh root@10.166.70.136'
-alias ynoconfig='ssh -i ~/.ssh/id_nreina_work root@10.166.70.131'
+alias ynoconfig='ssh -i ~/.ssh/id_nreina_work root@10.166.70.141'
+alias ynoconfigtest='ssh -i ~/.ssh/id_nreina_work root@10.166.70.131'
 alias ynodev='ssh -i ~/.ssh/id_nreina_work ynohub_developer@10.10.210.227'
 alias ynotest='ssh -i ~/.ssh/id_nreina_work root@104.131.188.59'
 alias amqest='ssh -i ~/.ssh/id_nreina_work root@167.71.82.146'
 alias ynodigital='ssh -i ~/.ssh/id_nreina_work root@138.197.82.129'
 alias fgbtest='ssh reinane@208.138.26.170'
+alias fgbprod='ssh reinane@208.138.26.171'
+alias fgbproddb='ssh reinane@208.138.26.172'
+alias jnbtest='ssh -i ~/.ssh/id_nreina_work root@10.166.156.244'
+alias bosltest='ssh -i ~/.ssh/id_nreina_work root@10.166.153.104'
+
+
+# YNOHUB PROD CLOUD 
+alias godoprod='ssh -i ~/.ssh/id_nreina_work root@10.115.33.181'
+alias boniprod='ssh -i ~/.ssh/id_nreina_work root@10.115.193.89'
+alias ecabprod='ssh -i ~/.ssh/id_nreina_work root@10.166.226.195'
+alias keycloakprod='ssh -i ~/.ssh/id_nreina_work root@10.166.70.139'
+
+
 # 165.227.76.35
+#
 #
 #
 #
@@ -108,9 +124,10 @@ alias dcl='docker compose logs -f'
 alias dcu='docker compose up -d --build'
 alias dcu-dev='docker compose -f docker-compose-dev.yaml up -d --build'
 alias dcd-iso-dev='docker compose -f docker-compose-iso-dev.yaml down'
-alias dcl-iso-dev='docker compose -f docker-compose-iso-dev.yaml logs -f'
-alias dcu-iso-dev='docker compose -f docker-compose-iso-dev.yaml up -d  && dcl-iso-dev'
-alias dcub-iso-dev='docker compose -f docker-compose-iso-dev.yaml up -d --build && dcl-iso-dev'
+alias dcl-iso-dev='docker compose -f docker-compose-iso-dev.yaml logs -f -n 20'
+alias dcr-iso-dev='docker compose -f docker-compose-iso-dev.yaml restart'
+alias dcu-iso-dev='docker compose -f docker-compose-iso-dev.yaml up -d'
+alias dcub-iso-dev='docker compose -f docker-compose-iso-dev.yaml build'
 alias dcd-iso='docker compose -f docker-compose-iso.yaml down'
 alias dcl-iso='docker compose -f docker-compose-iso.yaml logs -f'
 alias dcu-iso='docker compose -f docker-compose-iso.yaml up -d  && dcl-iso-dev'

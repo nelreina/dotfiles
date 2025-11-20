@@ -99,7 +99,7 @@ prepend_previewers = [
     { name = "*.db", run = "duckdb" },
     { name = "*.duckdb", run = "duckdb" },
     { name = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'},
-    { name = "*/", run  = 'piper -- eza -la --git --no-user --color=always --icons=always --group-directories-first --no-quotes "$1"'},
+    { name = "*/", run  = 'piper -- eza -la --git --no-user --color=always --icons=always --group-directories-first --sort=modified --reverse --no-quotes "$1"'},
    { name = "*.json", run = "bat" },
     { name = "*.yaml", run = "bat" },
     { name = "*.yml", run = "bat" },

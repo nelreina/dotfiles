@@ -1,6 +1,7 @@
 font-size = 20
 theme = Dark Pastel
 copy-on-select = clipboard
+clipboard-paste-protection = false
 
 keybind = alt+up=goto_split:top
 keybind = alt+down=goto_split:bottom
@@ -78,3 +79,5 @@ unfocused-split-fill = #4B4B4B
 
 quick-terminal-autohide=true
 quick-terminal-position=bottom
+confirm-close-surface = false
+

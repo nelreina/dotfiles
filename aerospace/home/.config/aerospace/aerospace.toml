@@ -244,7 +244,7 @@ run='move-node-to-workspace Z'
 
 [[on-window-detected]]
 if.app-id = 'org.RedisLabs.RedisInsight-V2'
-run='move-node-to-workspace R'
+run='move-node-to-workspace D'
 
 
 

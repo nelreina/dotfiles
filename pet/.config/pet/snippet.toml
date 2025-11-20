@@ -9,7 +9,7 @@
   Description = "copy to remote"
   Output = ""
   Tag = ["scp"]
-  command = "scp  -i ~/.ssh/id_nreina_mm  export <file> <user= root>@<host>:/<path>"
+  command = "scp -i ~/.ssh/id_nreina_work <file> <user=root>@<host>:/<path>"
 
 [[Snippets]]
   Description = "give execute permision"
