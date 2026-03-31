@@ -9,12 +9,12 @@ https://github.com/AnirudhG07/custom-shell.yazi/assets/146579014/1cd6ab98-5b79-4
 
 ## Requirements
 
-Yazi version 0.3.0 or higher. And of course, your custom-shell as default shell.
+Yazi version 25.2.7 or higher. And of course, your custom-shell as default shell.
 
 # Installation
 
 ```bash
-ya pack -a AnirudhG07/custom-shell
+ya pkg add AnirudhG07/custom-shell
 
 ## For linux and MacOS
 git clone https://github.com/AnirudhG07/custom-shell.yazi.git ~/.config/yazi/plugins/custom-shell.yazi
@@ -67,20 +67,23 @@ custom_shell -ic "command";exit
 
 You can also set options about the processes to run. The `shell` API for yazi allows the following options:
 
-1. Block: Custom-shell.yazi has default set to `true`.
-2. Orphan: Custom-shell.yazi has default set to `false`.
-3. Confirm: Custom-shell.yazi has default set to `true`.
-4. Interactive: Custom-shell.yazi DOES NOT use it, since it is mutually exclusive with `confirm`.
+1. Interactive: default set to `false`.
+2. Block: default set to `false`.
+3. Orphan: default set to `false`.
 
 To change these options, you can give the following arguments to the plugin:
 
-1. `--no-block` or `-nb` to set block to `false`.
-2. `--orphan` or `-o` to set orphan to `true`.
-3. `--no-confirm` or `-nc` to set confirm to `false`.
+- To set to `true`, add `--option=true` or simply `--option`.
+- To set to `false`, add `--option=false` or simply not add it in the command(unless default is `true`).
+
+For example:
+
+- `--block=false` to set block to false.
+- `--orphan=true` to set orphan to true.
 
 Check the keybindings below to see how to set these options.
 
-You can also add `--wait` or `-w` to make it wait for the user to press return key after executing the command. This allows the command output not to disappear immediately after exit and to stay readable on screen. Note that it is up to the command you run to decide whether to wait for user input or not, so this option may or may not be needed.
+You can also add `--wait`(default `false`) to make it wait for the user to press return key after executing the command. This allows the command output not to disappear immediately after exit and to stay readable on screen. Note that it is up to the command you run to decide whether to wait for user input or not, so this option may or may not be needed.
 
 ![wait argument demo](.assets/wait_demo.gif)
 
@@ -91,42 +94,56 @@ Add this to your `keymap.toml` file:
 To use the `auto` mode, you can set the keymappings as:
 
 ```toml
-[[manager.prepend_keymap]]
-on = [ "'", ";" ]
-run = "plugin custom-shell --args=auto"
+[[mgr.prepend_keymap]]
+on = [ "<keybinding>" ]
+run = 'plugin custom-shell -- auto --interactive'
 desc = "custom-shell as default"
 ```
 
 To choose a specific shell, you can set the keymappings as:
 
 ```toml
-[[manager.prepend_keymap]]
-on = [ "'", ";" ]
-run = "plugin custom-shell --args=zsh"
+[[mgr.prepend_keymap]]
+on = [ "<keybinding>" ]
+run = 'plugin custom-shell zsh' # OR 'plugin custom-shell -- zsh'
 desc = "custom-shell as default"
 ```
 
 To set extra shell arguments, you can add them as:
 
 ```toml
-[[manager.prepend_keymap]]
-on = [ "'", ";" ]
-run = "plugin custom-shell --args='zsh --no-block --orphan --no-confirm'"
-# OR
-# run = "plugin custom-shell --args='zsh -nb -o -nc'"
+[[mgr.prepend_keymap]]
+on = [ "<keybinding>" ]
+run = 'plugin custom-shell -- zsh --interactive --block'
 desc = "custom-shell as default with specified arguments"
 ```
 
-To choose a specific shell and wait for user to press return key after executing the command:
+To choose a specific shell(or `auto`) and `wait` for user to press return key after executing the command:
 
 ```toml
-[[manager.prepend_keymap]]
-on = [ "'", ";" ]
-run = "plugin custom-shell --args='zsh --wait'"
+[[mgr.prepend_keymap]]
+on = [ "<keybinding>" ]
+run = "plugin custom-shell -- zsh --wait"
 desc = "custom-shell as default, waits for user"
 ```
 
 You can input any shell with their shortnames or full names like "Powershell" or "pwsh", "nushell" or "nu", "Kornshell" or "ksh", etc.
+
+### Recommended Keybindings
+
+```toml
+[[mgr.prepend_keymap]]
+on = [ "'", ";" ]
+run = 'plugin custom-shell -- auto --interactive'
+desc = "custom-shell as default, interactive"
+```
+
+```toml
+[[mgr.prepend_keymap]]
+on = [ "'", ":" ]
+run = 'plugin custom-shell -- auto --interactive --block'
+desc = "custom-shell as default, interactive, block"
+```
 
 ## Custom Commands
 
@@ -135,35 +152,35 @@ Custom-shell.yazi allows you to run your custom commands without inputting them 
 To run a command, you can set the keymappings as:
 
 ```toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "l", "g" ]
-run = "plugin custom-shell --args='custom auto lazygit'"
+run = "plugin custom-shell -- custom auto lazygit"
 desc = "Run lazygit"
 ```
 
 You can also run the commands with extra arguments as:
 
 ```toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "'", "1" ]
-run = "plugin custom-shell --args='custom fish \"echo hi\" -o'"
+run = "plugin custom-shell -- custom fish 'echo hi' --orphan"
 desc = "Run echo hi"
 ```
 
 ```toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "'", "2" ]
-run = "plugin custom-shell --args='custom nu \"tmux\"'"
+run = "plugin custom-shell -- custom nu 'tmux'"
 desc = "Run tmux"
 ```
 
-To make it wait with a custom command, specify the `--wait` or `-w` arg right after the `custom` keyword, like this:
+To make the shell wait for your `ls` command, you can set the keymappings as:
 
 ```toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "'", "3" ]
-run = "plugin custom-shell --args='custom --wait zsh \"echo hi\" -o'"
-desc = "Run echo hi"
+run = "plugin custom-shell -- custom zsh 'ls' --wait"
+desc = "Run ls"
 ```
 
 ## History
@@ -171,15 +188,15 @@ desc = "Run echo hi"
 Custom-shell saves the command you have run in a history file. It uses `fzf` to show history and run the selected command. You can set the keymappings to view the history as -
 
 ```toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = [ "'", "h" ]
-run = "plugin custom-shell --args=history"
+run = "plugin custom-shell history"
 desc = "Show Custom-shell history"
 ```
 
 ## Features
 
-- Open your custom-shell as your default shell like zsh, <°))>< [fish](https://github.com/AnirudhG07/fish.yazi), bash, etc.
+- Open your custom-shell as your default shell like zsh, <°))>< fish, bash, etc.
 - Usage of aliases is supported.
 - When using 'auto' mode, if you change your default shell, it will automatically change the custom-shell to the new default shell.
 - If your shell runs extra commands like printing texts, taskwarrior, newsupdates, etc. when you open the shell, they will not hinder into it's functioning.

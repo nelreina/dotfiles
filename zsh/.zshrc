@@ -18,7 +18,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PYTHON:$NRTOOLS:$FLUTTER:$ANDROID_PT:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/git/bin:$PATH
 export PATH="$HOME/.bun/bin:$PATH"
-
+export PATH="$HOME/.cargo/bin:$PATH"
+export WHISPER_CPP_MODEL="$(brew --prefix whisper-cpp)/share/whisper-cpp/m odels/ggml-base.bin"
 
 export ZSH="$HOME/.oh-my-zsh"
 export VISUAL=nvim;
@@ -114,4 +115,11 @@ autoload -Uz compinit
 compinit
 
 . "$HOME/.local/bin/env"
-alias claude="/Users/nelsonreina/.claude/local/claude"
+
+# bun completions
+[ -s "/Users/nelsonreina/.bun/_bun" ] && source "/Users/nelsonreina/.bun/_bun"
+eval "$(mise activate zsh)"
+
+# OpenClaw Completion
+source "/Users/nelsonreina/.openclaw/completions/openclaw.zsh"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

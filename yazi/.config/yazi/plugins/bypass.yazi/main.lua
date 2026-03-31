@@ -1,12 +1,24 @@
+---@since 25.3.2
+
 -- For development
 --[[ local function notify(message) ]]
 --[[     ya.notify({ title = "Bypass", content = message, timeout = 5 }) ]]
 --[[ end ]]
 
+-- `ya.emit` as of 25.5.28
+local emit = ya.emit or ya.manager_emit
+
 ---Returns the loading state of the current directory
 ---@type fun(): boolean
-local is_directory_loaded = ya.sync(function(_)
-    return cx.active.current.stage.is_loading
+local is_directory_loading = ya.sync(function(_)
+    -- Try to use the v25.4.8 interface
+    local ok, res = pcall(cx.active.current.stage)
+    if ok then
+        return not res
+    -- Fallback to the v25.3.2 interface
+    else
+        return cx.active.current.stage.is_loading
+    end
 end)
 
 ---Enter hovered item if it is a directory
@@ -20,14 +32,14 @@ local initial = ya.sync(function(_, use_smart_enter)
     if not hovered.cha.is_dir then
         -- Open file if using "smart enter"
         if use_smart_enter then
-            ya.manager_emit("escape", { visual = true, select = true })
-            ya.manager_emit("open", { hovered = true })
+            emit("escape", { visual = true, select = true })
+            emit("open", { hovered = true })
         end
         return false
     end
 
-    ya.manager_emit("escape", { visual = true, select = true })
-    ya.manager_emit("enter", { hovered = true })
+    emit("escape", { visual = true, select = true })
+    emit("enter", { hovered = true })
 
     return true
 end)
@@ -41,7 +53,7 @@ local bypass = ya.sync(function(_)
         return false
     end
 
-    ya.manager_emit("enter", { hovered = true })
+    emit("enter", { hovered = true })
 
     return true
 end)
@@ -53,8 +65,8 @@ local initial_rev = ya.sync(function(_)
         return false
     end
 
-    ya.manager_emit("escape", { visual = true, select = true })
-    ya.manager_emit("leave", {})
+    emit("escape", { visual = true, select = true })
+    emit("leave", {})
 
     return true
 end)
@@ -66,7 +78,7 @@ local bypass_rev = ya.sync(function(_)
         return false
     end
 
-    ya.manager_emit("leave", {})
+    emit("leave", {})
 
     return true
 end)
@@ -75,7 +87,7 @@ return {
     entry = function(_, job)
         -- old version of Yazi will pass args directly, new version passes job. Below code ensures we derive args in both 0.3 and 0.4 Yazi API versions.
         local args = job.args or job
-        local use_smart_enter = args and args[1] == "smart_enter"
+        local use_smart_enter = args and args[1] == "smart-enter"
         local is_reverse = args and args[1] == "reverse"
 
         -- Initial run, should behave like a regular enter/smart-enter/leave
@@ -83,7 +95,7 @@ return {
 
         while run do
             -- Wait for directory to have loaded
-            while is_directory_loaded() do
+            while is_directory_loading() do
                 ya.sleep(0.002)
             end
 

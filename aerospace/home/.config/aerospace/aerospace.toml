@@ -124,7 +124,7 @@ alt-shift-equal = 'resize smart +50'
 #alt-6 = 'workspace 6'
 #alt-7 = 'workspace 7'
 #alt-8 = 'workspace 8'
-alt-a = 'workspace A' # Primary / Code 
+# alt-a = 'workspace A' # Primary / Code 
 alt-b = 'workspace B' # Browser
 alt-c = 'workspace C' # Config
 alt-d = 'workspace D' # Docker 
@@ -135,7 +135,7 @@ alt-d = 'workspace D' # Docker
 #alt-i = 'workspace I'  
 alt-m = 'workspace M' # Mail / Messahe
 #alt-n = 'workspace N' 
-#alt-o = 'workspace O' 
+alt-o = 'workspace O' #Obsidian 
 alt-p = 'workspace P' # Perplexity 
 #alt-q = 'workspace Q' 
 alt-r = 'workspace R' # Redis
@@ -169,7 +169,7 @@ alt-shift-d = 'move-node-to-workspace D' # Docker
 #alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
 #alt-shift-n = 'move-node-to-workspace N'
-#alt-shift-o = 'move-node-to-workspace O'
+alt-shift-o = 'move-node-to-workspace O'
 alt-shift-p = 'move-node-to-workspace P'
 #alt-shift-q = 'move-node-to-workspace Q'
 alt-shift-r = 'move-node-to-workspace R' # Redis
@@ -247,6 +247,9 @@ if.app-id = 'org.RedisLabs.RedisInsight-V2'
 run='move-node-to-workspace R'
 
 
+[[on-window-detected]]
+if.app-id = "md.obsidian"
+run='move-node-to-workspace O'
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'

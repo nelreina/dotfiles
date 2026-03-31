@@ -50,7 +50,9 @@ alias cat='bat --style=plain'
 alias python='python3'
 
 alias ydmp3='yt-dlp -x --audio-format mp3' 
-
+alias lssh='lazyssh'
+alias npx='bunx'
+alias npm='bun'
 
 # Client VMS
 alias lcmpb='ssh -i ~/.ssh/id_nreinamm root@142.93.73.130'
