@@ -16,16 +16,17 @@ alias serpl='serpl --project-root .'
 #alias cd='z'
 alias lzg='lazygit'
 alias lzd='lazydocker'
+alias lssh='lazyssh'
 alias zz='z -'
 alias cf='copyfile'
 alias cpath='copypath'
-alias psg='pass -c _/ibis/github'
 alias pvpn='pass -c _/ibis/vpn/bluenap'
-alias psg='pass gh/nelreina'
 alias p='pet exec'
 alias pn='pet new'
 alias pc='pet clip'
-
+alias npx=bunx
+alias npm=bun
+alias brel=zrel
 #alias yz='yazi'
 # bun completions
 function yz() {
@@ -48,7 +49,7 @@ alias zy='z y'
 alias python='python3'
 
 alias ydmp3='yt-dlp -x --audio-format mp3' 
-
+# alias zed='/Applications/Zed.app/Contents/MacOS/zed'
 # LCM
 
 # IBIS VMS
@@ -95,6 +96,12 @@ alias bosltest='ssh -i ~/.ssh/id_nreina_work root@10.166.153.104'
 alias godoprod='ssh -i ~/.ssh/id_nreina_work root@10.115.33.181'
 alias boniprod='ssh -i ~/.ssh/id_nreina_work root@10.115.193.89'
 alias ecabprod='ssh -i ~/.ssh/id_nreina_work root@10.166.226.195'
+alias sknaprod='ssh -i ~/.ssh/id_nreina_work root@10.114.68.75'
+alias jnbprod='ssh -i ~/.ssh/id_nreina_work root@10.166.156.246'
+alias bommprod='ssh -i ~/.ssh/id_nreina_work root@10.115.193.94'
+alias bonnprod='ssh -i ~/.ssh/id_nreina_work root@10.114.26.200'
+alias ncbaprod='ssh -i ~/.ssh/id_nreina_work root@10.115.26.209'
+alias acbprod='ssh -i ~/.ssh/id_nreina_work alchprod1@172.20.54.3'
 alias keycloakprod='ssh -i ~/.ssh/id_nreina_work root@10.166.70.139'
 
 

@@ -19,7 +19,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PYTHON:$NRTOOLS:$FLUTTER:$ANDROID_PT:$XDG_
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/git/bin:$PATH
 export PATH="$HOME/.bun/bin:$PATH"
-
+export PGSSLMODE=disable
 
 export ZSH="$HOME/.oh-my-zsh"
 export VISUAL=nvim;
@@ -79,9 +79,6 @@ export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -120,4 +117,11 @@ export PATH="$HOME/.local/bin:$PATH"
 export BAT_CONFIG_PATH="$HOME/.config/bat/config"
 
 
-alias claude="/Users/nelsonreina/.claude/local/claude"
+
+# bun completions
+[ -s "/Users/nelsonreina/.bun/_bun" ] && source "/Users/nelsonreina/.bun/_bun"
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
