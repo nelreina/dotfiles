@@ -37,6 +37,7 @@ keybind = cmd+z=text:\x00z
 keybind = cmd+shift+S=text:\x00S
 keybind = cmd+shift+n=text:\x00N
 keybind = cmd+shift+p=text:\x00P
+keybind = cmd+slash=text:\x00/
 keybind = opt+shift+1=text:\x001
 keybind = opt+shift+2=text:\x002
 keybind = opt+shift+3=text:\x003
@@ -60,6 +61,8 @@ keybind = cmd+shift+up=text:\x00k
 keybind = cmd+shift+down=text:\x00j
 keybind = cmd+tab=text:\02n
 keybind = cmd+comma=text:\x00,
+keybind = cmd+period=text:\x00.
+keybind = cmd+shift+period=text:\x00>
 keybind = cmd+left_bracket=text:\x00p
 keybind = cmd+right_bracket=text:\x00n
 keybind = cmd+alt+left=text:\x00p
