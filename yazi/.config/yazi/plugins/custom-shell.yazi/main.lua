@@ -2,6 +2,12 @@ local state_option = ya.sync(function(state, attr)
 	return state[attr]
 end)
 
+--- How trailing args are appended after the quoted command.
+--- POSIX = shell_val + %s ($0/$@ trick), ARGV = bare %s (no $0 override),
+--- NONE = nothing appended (user must inline %s themselves).
+--- @enum ArgMode
+local ArgMode = { POSIX = "posix", ARGV = "argv", NONE = "none" }
+
 local function shell_choice(shell_val)
 	-- input is in lowercase always
 	local alt_name_map = {
@@ -11,44 +17,46 @@ local function shell_choice(shell_val)
 	}
 
 	local shell_map = {
-		bash = { shell_val = "bash", supporter = "-ic", wait_cmd = "read" },
-		zsh = { shell_val = "zsh", supporter = "-ic", wait_cmd = "read" },
-		fish = { shell_val = "fish", supporter = "-c", wait_cmd = "read" },
-		pwsh = { shell_val = "pwsh", supporter = "-Command", wait_cmd = "Read-Host" },
-		sh = { shell_val = "sh", supporter = "-c", wait_cmd = "read" },
-		ksh = { shell_val = "ksh", supporter = "-c", wait_cmd = "read" },
-		csh = { shell_val = "csh", supporter = "-c", wait_cmd = "$<" },
-		tcsh = { shell_val = "tcsh", supporter = "-c", wait_cmd = "$<" },
-		dash = { shell_val = "dash", supporter = "-c", wait_cmd = "read" },
-		nu = { shell_val = "nu", supporter = "-ic", wait_cmd = "input" },
+		bash = { shell_val = "bash", supporter = "-ic", wait_cmd = "read", separator = ";", arg_mode = ArgMode.POSIX },
+		zsh = { shell_val = "zsh", supporter = "-ic", wait_cmd = "read", separator = ";", arg_mode = ArgMode.POSIX },
+		fish = { shell_val = "fish", supporter = "-c", wait_cmd = "read", separator = ";", arg_mode = ArgMode.ARGV },
+		pwsh = { shell_val = "pwsh", supporter = "-Command", wait_cmd = "Read-Host", separator = ";", arg_mode = ArgMode.NONE },
+		sh = { shell_val = "sh", supporter = "-c", wait_cmd = "read", separator = ";", arg_mode = ArgMode.POSIX },
+		ksh = { shell_val = "ksh", supporter = "-c", wait_cmd = "read", separator = ";", arg_mode = ArgMode.POSIX },
+		csh = { shell_val = "csh", supporter = "-c", wait_cmd = "$<", separator = ";", arg_mode = ArgMode.ARGV },
+		tcsh = { shell_val = "tcsh", supporter = "-c", wait_cmd = "$<", separator = ";", arg_mode = ArgMode.ARGV },
+		dash = { shell_val = "dash", supporter = "-c", wait_cmd = "read", separator = ";", arg_mode = ArgMode.POSIX },
+		nu = { shell_val = "nu", supporter = "-l -i -c", wait_cmd = "input", separator = "| print;", arg_mode = ArgMode.NONE },
 	}
 
 	shell_val = alt_name_map[shell_val] or shell_val
 	local shell_info = shell_map[shell_val]
 
 	if shell_info then
-		return shell_info.shell_val, shell_info.supporter, shell_info.wait_cmd
+		return shell_info.shell_val, shell_info.supporter, shell_info.wait_cmd, shell_info.separator, shell_info.arg_mode
 	else
-		return nil, "-c", "read"
+		return nil, "-c", "read", ";", ArgMode.NONE
 	end
 end
 
-local function manage_extra_args(args)
-	-- set default values, --custom-shell.yazi does not use --interactive but --confirm.
-	local block, confirm, orphan, wait = true, true, false, false
-	for _, arg in ipairs(args) do
-		if arg == "-nb" or arg == "--no-block" then
-			block = false
-		elseif arg == "-nc" or arg == "--no-confirm" then
-			confirm = false
-		elseif arg == "-o" or arg == "--orphan" then
-			orphan = true
-		elseif arg == "-w" or arg == "--wait" then
-			wait = true
+local function manage_extra_args(job)
+	-- function for dealing with --option, --option=boolean, nil
+	local function tobool(arg, default)
+		if type(arg) == "boolean" then
+			return arg
+		elseif type(arg) == "string" then
+			return arg:lower() == "true"
 		end
+		-- Fallback in case of nil
+		return default
 	end
 
-	return block, confirm, orphan, wait
+	local block = tobool(job.args.block, true)
+	local orphan = tobool(job.args.orphan, false)
+	local wait = tobool(job.args.wait, false)
+	local interactive = tobool(job.args.confirm, false)
+
+	return block, orphan, wait, interactive
 end
 
 local function manage_additional_title_text(block, wait)
@@ -57,6 +65,18 @@ local function manage_additional_title_text(block, wait)
 		txt = "(" .. (block and wait and "block and wait" or block and "block" or "") .. ")"
 	end
 	return txt
+end
+
+--- Build the trailing positional-args suffix appended after the quoted command.
+--- @param arg_mode ArgMode how to append trailing args
+--- @param shell_val string|nil name of the shell binary (used as fake $0 for posix)
+local function build_args_suffix(arg_mode, shell_val)
+	if arg_mode == ArgMode.POSIX then
+		return " " .. ( shell_val or "unknown" ) .. " " .. "%s"
+	elseif arg_mode == ArgMode.ARGV then
+		return " " .. "%s"
+	end
+	return ""
 end
 
 local function history_add(history_path, cmd_run)
@@ -112,7 +132,7 @@ local function history_prev(history_path)
 	for i, cmd in ipairs(history_cmds) do
 		history_cmds[i] = cmd:gsub("'", "'\\''") -- Escape single quotes
 	end
-	local permit = ya.hide()
+	local permit = ui.hide()
 
 	local cmd = string.format('%s < "%s"', "fzf", history_path)
 	local handle = io.popen(cmd, "r")
@@ -128,29 +148,60 @@ local function history_prev(history_path)
 	return his_cmd
 end
 
-local function entry(_, args)
-	local shell_env = os.getenv("SHELL"):match(".*/(.*)")
+local PERCENT_SENTINEL = "\1"
+
+--- Quote the command if needed, preserving yazi placeholders and handling
+--- Windows-specific quoting issues.
+--- @param cmd string command to quote
+local function quote_if_needed(cmd)
+	if ya.target_family() ~= "windows" then
+		return ya.quote(cmd)
+	end
+
+	local shielded = cmd:gsub("%%", PERCENT_SENTINEL)
+	local quoted = ya.quote(shielded)
+	return (quoted:gsub(PERCENT_SENTINEL, "%%"))
+end
+
+local function entry(_, job)
+	local raw_shell_env = os.getenv("SHELL")
+	local shell_env
+	if raw_shell_env then
+		shell_env = raw_shell_env:match(".*[/\\]([^%.]+)") or raw_shell_env
+	else
+		shell_env = ya.target_family() == "windows" and "pwsh" or "sh"
+		ya.notify({
+			title = "Custom-Shell",
+			content = "$SHELL is not set, falling back to " .. shell_env,
+			timeout = 5,
+		})
+	end
 	local shell_value, cmd, custom_shell_cmd = "", "", ""
 
 	local history_path, save_history = state_option("history_path"), state_option("save_history")
 
-	if args[1] == "auto" or args[1] == "history" then
+	if job.args[1] == nil or job.args[1] == "auto" or job.args[1] == "history" then
+		-- no args at all is treated the same as `auto`: just open $SHELL
 		shell_value = shell_env:lower()
-	elseif args[1] == "custom" then
-		if args[2] == "--wait" or args[2] == "-w" then
-			shell_value = args[3]
-			cmd = args[4]
-		else
-			shell_value = args[2]
-			cmd = args[3]
+	elseif job.args[1] == "custom" then
+		shell_value = job.args[2]
+		cmd = job.args[3]
+		if not shell_value or not cmd then
+			ya.notify({
+				title = "Custom-Shell",
+				content = "'custom' needs a shell and a command, e.g. `custom bash 'ls'`",
+				timeout = 5,
+			})
+			return
 		end
-	elseif args[1] ~= "history" then
-		shell_value = args[1]:lower()
+	-- when the first param is a shell name
+	else
+		shell_value = job.args[1]:lower()
 	end
 
-	local shell_val, supp, wait_cmd = shell_choice(shell_value:lower())
+	local shell_val, supp, wait_cmd, separator, arg_mode = shell_choice(shell_value:lower())
 
-	if args[1] == "history" then
+	if job.args[1] == "history" then
 		local his_cmd = history_prev(history_path)
 		if his_cmd == nil then
 			return
@@ -168,35 +219,36 @@ local function entry(_, args)
 	end
 	if shell_val == nil then
 		ya.notify("Unsupported shell: " .. shell_value .. "Choosing Default Shell: " .. shell_env)
-		shell_val, supp = shell_choice(shell_env)
+		shell_val, supp, wait_cmd, separator, arg_mode = shell_choice(shell_env)
 	end
 
-	local block, confirm, orphan, wait = manage_extra_args(args)
+	local block, orphan, wait, interactive = manage_extra_args(job) --  , confirm
 	local additional_title_text = manage_additional_title_text(block, wait)
 	local input_title = shell_value .. " Shell " .. additional_title_text .. ": "
 	local event = 1
 
-	if args[1] ~= "custom" and args[1] ~= "history" then
+	if job.args[1] ~= "custom" and job.args[1] ~= "history" then
 		cmd, event = ya.input({
 			title = input_title,
-			position = { "top-center", y = 3, w = 40 },
+			pos = { "top-center", y = 3, w = 40 },
 		})
 	end
 
 	if event == 1 then
-		local after_cmd = wait and wait_cmd or "exit"
+		local after_cmd = separator .. (wait and wait_cmd or "exit")
 		-- for history also, this will be added.
-		custom_shell_cmd = shell_val .. " " .. supp .. " " .. ya.quote(cmd .. "; " .. after_cmd, true)
+		custom_shell_cmd =
+			shell_val .. " " .. supp .. " " .. quote_if_needed(cmd .. after_cmd) .. build_args_suffix(arg_mode, shell_val)
 
-		ya.manager_emit("shell", {
+		ya.emit("shell", {
 			custom_shell_cmd,
 			block = block,
-			confirm = confirm,
+			interactive = interactive,
 			orphan = orphan,
 		})
 
 		if save_history then
-			if args[1] == "history" then
+			if job.args[1] == "history" then
 				-- to avoid nested "zsh -c 'zsh -c ...'"
 				history_add(history_path, cmd)
 			else
@@ -205,6 +257,8 @@ local function entry(_, args)
 		end
 	end
 end
+
+--- @since 25.2.7
 
 return {
 	setup = function(state, options)

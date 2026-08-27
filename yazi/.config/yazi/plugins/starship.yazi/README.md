@@ -6,13 +6,13 @@ Starship prompt plugin for [Yazi](https://github.com/sxyazi/yazi)
 
 ## Requirements
 
-- [Yazi](https://github.com/sxyazi/yazi)
+- [Yazi](https://github.com/sxyazi/yazi) (v25.4.8+)
 - [starship](https://github.com/starship/starship)
 
 ## Installation
 
 ```bash
-ya pack -a Rolv-Apneseth/starship
+ya pkg add Rolv-Apneseth/starship
 ```
 
 ### Manual
@@ -32,14 +32,31 @@ Add this to `~/.config/yazi/init.lua`:
 require("starship"):setup()
 ```
 
-If you wish to define a custom config file for `starship` to use, you can pass in a path
-to the setup function like this:
+Make sure you have [starship](https://github.com/starship/starship) installed and in your `PATH`.
+
+## Config
+
+Here is an example with all available config options:
 
 ```lua
-starship:setup({ config_file = "/home/rolv/.config/starship_secondary.toml" })
+require("starship"):setup({
+    -- Hide flags (such as filter, find and search). This can be beneficial for starship themes
+    -- which are intended to go across the entire width of the terminal.
+    hide_flags = false,
+    -- Whether to place flags after the starship prompt. False means the flags will be placed before the prompt.
+    flags_after_prompt = true,
+    -- Custom starship configuration file to use
+    config_file = "~/.config/starship_full.toml", -- Default: nil
+    -- Whether to enable support for starship's right prompt (i.e. `starship prompt --right`).
+    show_right_prompt = false,
+    -- Whether to hide the count widget, in case you want only your right prompt to show up. Only has
+    -- an effect when `show_right_prompt = true`
+    hide_count = false,
+    -- Separator to place between the right prompt and the count widget. Use `count_separator = ""`
+    -- to have no space between the widgets.
+    count_separator = " ",
+})
 ```
-
-Make sure you have [starship](https://github.com/starship/starship) installed and in your `PATH`.
 
 ## Extra
 
@@ -50,41 +67,35 @@ If you use a `starship` theme with a background colour, it might look a bit to c
 
 ```lua
 local old_build = Tab.build
+
 Tab.build = function(self, ...)
     local bar = function(c, x, y)
         if x <= 0 or x == self._area.w - 1 then
-            return ui.Bar(ui.Rect.default, ui.Bar.TOP)
+            return ui.Bar(ui.Edge.TOP)
         end
 
-        return ui.Bar(
-            ui.Rect({
+        return ui.Bar(ui.Edge.TOP)
+            :area(ui.Rect({
                 x = x,
                 y = math.max(0, y),
                 w = ya.clamp(0, self._area.w - x, 1),
                 h = math.min(1, self._area.h),
-            }),
-            ui.Bar.TOP
-        ):symbol(c)
+            }))
+            :symbol(c)
     end
 
     local c = self._chunks
     self._chunks = {
-        c[1]:padding(ui.Padding.y(1)),
-        c[2]:padding(ui.Padding(c[1].w > 0 and 0 or 1, c[3].w > 0 and 0 or 1, 1, 1)),
-        c[3]:padding(ui.Padding.y(1)),
+        c[1]:pad(ui.Pad.y(1)),
+        c[2]:pad(ui.Pad.y(1)),
+        c[3]:pad(ui.Pad.y(1)),
     }
 
-    local style = THEME.manager.border_style
     self._base = ya.list_merge(self._base or {}, {
-        -- Enable for full border
-        --[[ ui.Border(self._area, ui.Border.ALL):type(ui.Border.ROUNDED):style(style), ]]
-        ui.Bar(self._chunks[1], ui.Bar.RIGHT):style(style),
-        ui.Bar(self._chunks[3], ui.Bar.LEFT):style(style),
-
-        bar("┬", c[1].right - 1, c[1].y),
-        bar("┴", c[1].right - 1, c[1].bottom - 1),
-        bar("┬", c[2].right, c[2].y),
-        bar("┴", c[2].right, c[1].bottom - 1),
+        bar("┬", c[2].x, c[1].y),
+        bar("┴", c[2].x, c[1].bottom - 1),
+        bar("┬", c[2].right - 1, c[2].y),
+        bar("┴", c[2].right - 1, c[2].bottom - 1),
     })
 
     old_build(self, ...)
@@ -98,4 +109,8 @@ end
 
 ## Thanks
 
-- [sxyazi](https://github.com/sxyazi) for providing the code for this plugin and the demo video [in this comment](https://github.com/sxyazi/yazi/issues/767#issuecomment-1977082834)
+- [sxyazi](https://github.com/sxyazi) for creating and maintaining Yazi, and also
+  for providing the initial code and the demo video for this plugin
+  in [this comment](https://github.com/sxyazi/yazi/issues/767#issuecomment-1977082834)
+- The authors and maintainers of [starship](https://github.com/starship/starship), which has been my
+  prompt of choice for many years

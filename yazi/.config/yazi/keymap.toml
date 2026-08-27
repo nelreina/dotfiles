@@ -20,22 +20,22 @@ desc = "Go to git repo root"
 # Bookmarks plugin
 [[mgr.prepend_keymap]]
 on = [ "m" ]
-run = "plugin bookmarks --args=save"
+run = "plugin bookmarks -- save"
 desc = "Save current position as a bookmark"
 
 [[mgr.prepend_keymap]]
 on = [ "'" ]
-run = "plugin bookmarks --args=jump"
+run = "plugin bookmarks -- jump"
 desc = "Jump to a bookmark"
 
 [[mgr.prepend_keymap]]
 on = [ "b", "d" ]
-run = "plugin bookmarks --args=delete"
+run = "plugin bookmarks -- delete"
 desc = "Delete a bookmark"
 
 [[mgr.prepend_keymap]]
 on = [ "b", "D" ]
-run = "plugin bookmarks --args=delete_all"
+run = "plugin bookmarks -- delete_all"
 desc = "Delete all bookmarks"
 
 # Copy file contents plugin
@@ -65,21 +65,32 @@ desc = "Recursively enter child directory, skipping children with only a single 
 
 [[mgr.prepend_keymap]]
 on = [ "H" ]
-run = "plugin bypass --args=reverse"
+run = "plugin bypass -- reverse"
 desc = "Recursively enter parent directory, skipping parents with only a single subdirectory"
 
 [[mgr.prepend_keymap]]
 on = [ "l" ]
-run = "plugin bypass --args=smart_enter"
+run = "plugin bypass -- smart-enter"
 desc = "Open a file, or recursively enter child directory, skipping children with only a single subdirectory"
 
-# Max-preview plugin
+# toggle-pane plugin (replaces max-preview, removed from yazi-rs/plugins in 26.x)
 [[mgr.prepend_keymap]]
 on   = "T"
-run  = "plugin max-preview"
+run  = "plugin toggle-pane max-preview"
 desc = "Maximize or restore preview"
 
 [[mgr.prepend_keymap]]
 on = [ "\"", "h" ]
-run = "plugin custom-shell --args=history"
+run = "plugin custom-shell -- history"
 desc = "Show Custom-shell history"
+
+# wormhole.yazi -- W, not w: lowercase w is the preset `tasks:show`
+[[mgr.prepend_keymap]]
+on   = [ "W", "s" ]
+run  = "plugin wormhole -- send"
+desc = "Send via magic-wormhole"
+
+[[mgr.prepend_keymap]]
+on   = [ "W", "r" ]
+run  = "plugin wormhole -- receive"
+desc = "Receive via magic-wormhole"
