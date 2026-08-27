@@ -83,3 +83,14 @@ desc = "Maximize or restore preview"
 on = [ "\"", "h" ]
 run = "plugin custom-shell -- history"
 desc = "Show Custom-shell history"
+
+# wormhole.yazi -- W, not w: lowercase w is the preset `tasks:show`
+[[mgr.prepend_keymap]]
+on   = [ "W", "s" ]
+run  = "plugin wormhole -- send"
+desc = "Send via magic-wormhole"
+
+[[mgr.prepend_keymap]]
+on   = [ "W", "r" ]
+run  = "plugin wormhole -- receive"
+desc = "Receive via magic-wormhole"

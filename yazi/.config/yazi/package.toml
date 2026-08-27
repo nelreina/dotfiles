@@ -73,5 +73,10 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "c591a36"
 hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
+[[plugin.deps]]
+use = "nelreina/wormhole"
+rev = "a8b5012"
+hash = "e141ad3f3911dec3b0210462a7dc430b"
+
 [flavor]
 deps = []
