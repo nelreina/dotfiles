@@ -1,12 +1,11 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
 ratio          = [ 1, 2, 5 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
-sort_reverse 	 = false
+sort_reverse   = false
 sort_dir_first = true
 sort_translit  = false
 linemode       = "none"
@@ -14,10 +13,10 @@ show_hidden    = false
 show_symlink   = true
 scrolloff      = 5
 mouse_events   = [ "click", "scroll" ]
-title_format   = "Yazi: {cwd}"
+# title_format was REMOVED in yazi 26.5.6 (#3684) -> see init.lua (ind-app-title DDS event)
 
 [preview]
- wrap           = "no"
+wrap            = "no"
 tab_size        = 5
 max_width       = 2240
 max_height      = 1000
@@ -31,36 +30,41 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-	{ run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
-	{ run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
+	{ run = "${EDITOR:-vi} %s", desc = "$EDITOR", block = true, for = "unix" },
+	{ run = "code %s",    orphan = true, desc = "code",           for = "windows" },
+	{ run = "code -w %s", block = true,  desc = "code (block)",   for = "windows" },
 ]
 open = [
-	{ run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
-	{ run = 'open "$@"',                    desc = "Open", for = "macos" },
-	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
-  { name = "xml-as-text", run = 'bat --style=numbers --language=txt "$1"', block = false}
+	{ run = "xdg-open %s1",                desc = "Open", for = "linux" },
+	{ run = "open %s",                    desc = "Open", for = "macos" },
+	{ run = 'start "" %s1', orphan = true, desc = "Open", for = "windows" },
+]
+# Was an inline `{ name = "xml-as-text", ... }` entry inside `open` above, which is not a
+# valid opener field -- `use = "xml-as-text"` below never resolved. Now a real opener block.
+xml-as-text = [
+	{ run = "bat --style=numbers --language=txt %s1", desc = "XML as text", block = false, for = "unix" },
 ]
 reveal = [
-	{ run = 'xdg-open "$(dirname "$1")"',           desc = "Reveal", for = "linux" },
-	{ run = 'open -R "$1"',                         desc = "Reveal", for = "macos" },
-	{ run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
-	{ run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+	{ run = "xdg-open %d1",           desc = "Reveal", for = "linux" },
+	{ run = "open -R %s1",                         desc = "Reveal", for = "macos" },
+	{ run = "explorer /select,%s1", orphan = true, desc = "Reveal", for = "windows" },
+	{ run = "exiftool %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-	{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
-	{ run = 'ya pub extract --list %*',   desc = "Extract here", for = "windows" },
+	{ run = "ya pub extract --list %s", desc = "Extract here", for = "unix" },
+	{ run = "ya pub extract --list %s",   desc = "Extract here", for = "windows" },
 ]
 play = [
-	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
-	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+	{ run = "mpv --force-window %s", orphan = true, for = "unix" },
+	{ run = "mpv --force-window %s", orphan = true, for = "windows" },
+	{ run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
 ]
 
 [open]
+# `name` -> `url` for open rules (yazi 25.12.29, #3034)
 rules = [
 	# Folder
-	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	{ url = "*/", use = [ "edit", "open", "reveal" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image
@@ -75,153 +79,91 @@ rules = [
 	# Empty file
 	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
 	# Fallback
-	{ name = "*", use = [ "open", "reveal" ] },
+	{ url = "*", use = [ "open", "reveal" ] },
+]
+
+prepend_rules = [
+	{ mime = "text/xml",        use = "xml-as-text" },
+	{ mime = "application/xml", use = "xml-as-text" },
 ]
 
 [tasks]
-micro_workers    = 10
-macro_workers    = 10
+# micro_workers / macro_workers were REMOVED in yazi 26.5.6 (#3661)
 bizarre_retry    = 3
 image_alloc      = 536870912  # 512MB
 image_bound      = [ 0, 0 ]
 suppress_preload = false
 
 [plugin]
+# `name` -> `url` for previewers/preloaders (yazi 25.12.29, #3034)
 prepend_previewers = [
-    # { name = "*.md", run = "rich-preview" }, # for markdown (.md) files
-    { name = "*.rst", run = "rich-preview"}, # for restructured text (.rst) files
-    { name = "*.ipynb", run = "rich-preview"}, # for jupyter notebooks (.ipynb)
-    { name = "*.csv", run = "duckdb" },  
-    { name = "*.tsv", run = "duckdb" },  
-    { name = "*.parquet", run = "duckdb" },  
-    { name = "*.txt", run = "bat" },  
-    { name = "*.xlsx", run = "duckdb" },  
-    { name = "*.db", run = "duckdb" },
-    { name = "*.duckdb", run = "duckdb" },
-    { name = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"'},
-    { name = "*/", run  = 'piper -- eza -la --git --no-user --color=always --icons=always --group-directories-first --sort=modified --reverse --no-quotes "$1"'},
-   { name = "*.json", run = "bat" },
-    { name = "*.yaml", run = "bat" },
-    { name = "*.yml", run = "bat" },
-    { name = "*.toml", run = "bat" },
-    { name = "*.js", run = "bat" },
-    { name = "*.ts", run = "bat" },
-    { name = "*.jsx", run = "bat" },
-    { name = "*.tsx", run = "bat" },
-    { name = "*.py", run = "bat" },
-    { name = "*.rs", run = "bat" },
-    { name = "*.go", run = "bat" },
-    { name = "*.sh", run = "bat" },
-    { name = "*.bash", run = "bat" },
-    { name = "*.zsh", run = "bat" },
-    { name = "*.fish", run = "bat" },
-    { name = "*.vim", run = "bat" },
-    { name = "*.lua", run = "bat" },
-    { name = "*.rb", run = "bat" },
-    { name = "*.java", run = "bat" },
-    { name = "*.c", run = "bat" },
-    { name = "*.cpp", run = "bat" },
-    { name = "*.h", run = "bat" },
-    { name = "*.hpp", run = "bat" },
-    { name = "*.css", run = "bat" },
-    { name = "*.scss", run = "bat" },
-    { name = "*.html", run = "bat" },
-
-     { mime = "text/xml", run = "rich" },
-     { name = "*.xml", run = "rich" },
-    { name = "*.sql", run = "bat" },
-    { name = "*.dockerfile", run = "bat" },
-    { name = "*Dockerfile*", run = "bat" },
-    { name = "*.conf", run = "bat" },
-    { name = "*.ini", run = "bat" },
-    { name = "*.svelte", run = "bat" },
-    { name = "*.swi", run = "bat" },
-    { name = "*.env", run = "bat" },
-    { name = "*.env*", run = "bat" },
-    { name = "*.mustache", run = "bat" },
-
-#    { name = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
+	# { url = "*.md", run = "rich-preview" }, # for markdown (.md) files
+	{ url = "*.rst",     run = "rich-preview" }, # restructured text
+	{ url = "*.ipynb",   run = "rich-preview" }, # jupyter notebooks
+	{ url = "*.csv",     run = "duckdb" },
+	{ url = "*.tsv",     run = "duckdb" },
+	{ url = "*.parquet", run = "duckdb" },
+	{ url = "*.txt",     run = "bat" },
+	{ url = "*.xlsx",    run = "duckdb" },
+	{ url = "*.db",      run = "duckdb" },
+	{ url = "*.duckdb",  run = "duckdb" },
+	{ url = "*.md",      run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+	{ url = "*/",        run = 'piper -- eza -la --git --no-user --color=always --icons=always --group-directories-first --sort=modified --reverse --no-quotes "$1"' },
+	{ url = "*.json",   run = "bat" },
+	{ url = "*.yaml",   run = "bat" },
+	{ url = "*.yml",    run = "bat" },
+	{ url = "*.toml",   run = "bat" },
+	{ url = "*.js",     run = "bat" },
+	{ url = "*.ts",     run = "bat" },
+	{ url = "*.jsx",    run = "bat" },
+	{ url = "*.tsx",    run = "bat" },
+	{ url = "*.py",     run = "bat" },
+	{ url = "*.rs",     run = "bat" },
+	{ url = "*.go",     run = "bat" },
+	{ url = "*.sh",     run = "bat" },
+	{ url = "*.bash",   run = "bat" },
+	{ url = "*.zsh",    run = "bat" },
+	{ url = "*.fish",   run = "bat" },
+	{ url = "*.vim",    run = "bat" },
+	{ url = "*.lua",    run = "bat" },
+	{ url = "*.rb",     run = "bat" },
+	{ url = "*.java",   run = "bat" },
+	{ url = "*.c",      run = "bat" },
+	{ url = "*.cpp",    run = "bat" },
+	{ url = "*.h",      run = "bat" },
+	{ url = "*.hpp",    run = "bat" },
+	{ url = "*.css",    run = "bat" },
+	{ url = "*.scss",   run = "bat" },
+	{ url = "*.html",   run = "bat" },
+	{ mime = "text/xml", run = "rich" },
+	{ url = "*.xml",    run = "rich" },
+	{ url = "*.sql",        run = "bat" },
+	{ url = "*.dockerfile", run = "bat" },
+	{ url = "*Dockerfile*", run = "bat" },
+	{ url = "*.conf",       run = "bat" },
+	{ url = "*.ini",        run = "bat" },
+	{ url = "*.svelte",     run = "bat" },
+	{ url = "*.swi",        run = "bat" },
+	{ url = "*.env",        run = "bat" },
+	{ url = "*.env*",       run = "bat" },
+	{ url = "*.mustache",   run = "bat" },
 ]
 
-# ~/.config/yazi/yazi.toml
-
-
-[[open.prepend_rules]]
-mime = "text/xml"
-use = "xml-as-text"
-
-[[open.prepend_rules]] 
-mime = "application/xml"
-use = "xml-as-text"
-
-
-
-
-prepend_preloaders = [  
-  { name = "*.csv", run = "duckdb", multi = false },  
-  { name = "*.tsv", run = "duckdb", multi = false },  
-  { name = "*.parquet", run = "duckdb", multi = false },
-  { name = "*.txt", run = "duckdb", multi = false },  
-  { name = "*.xlsx", run = "duckdb", multi = false },
-  { name = "*.xml", run = "rich", multi = false }
+# NOTE: this block used to sit *inside* the last [[open.prepend_rules]] table, so it was
+# silently inert. Moved under [plugin] where it belongs -- duckdb/rich preloading now works.
+prepend_preloaders = [
+	{ url = "*.csv",     run = "duckdb", multi = false },
+	{ url = "*.tsv",     run = "duckdb", multi = false },
+	{ url = "*.parquet", run = "duckdb", multi = false },
+	{ url = "*.txt",     run = "duckdb", multi = false },
+	{ url = "*.xlsx",    run = "duckdb", multi = false },
+	{ url = "*.xml",     run = "rich",   multi = false },
 ]
-fetchers = [
-	# Mimetype
-	{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
-]
-spotters = [
-	{ name = "*/", run = "folder" },
-	# Code
-	{ mime = "text/*", run = "code" },
-	{ mime = "*/{javascript,wine-extension-ini}", run = "code" },
-	# Image
-	{ mime = "image/{avif,hei?,jxl,svg}", run = "magick" },
-	{ mime = "image/*", run = "image" },
-	# Video
-	{ mime = "video/*", run = "video" },
-	# Fallback
-	{ name = "*", run = "file" },
-]
-preloaders = [
-	# Image
-	{ mime = "image/{avif,hei?,jxl,svg}", run = "magick" },
-	{ mime = "image/*", run = "image" },
-	# Video
-	{ mime = "video/*", run = "video" },
-	# PDF
-	{ mime = "application/pdf", run = "pdf" },
-	# Font
-	{ mime = "font/*", run = "font" },
-	{ mime = "application/ms-opentype", run = "font" },
-]
-previewers = [
-	{ name = "*/", run = "folder", sync = true },
-	# Code
-	{ mime = "text/*", run = "code" },
-	{ mime = "*/{javascript,wine-extension-ini}", run = "code" },
-	# Image
-	{ mime = "image/{avif,hei?,jxl,svg}", run = "magick" },
-	{ mime = "image/*", run = "image" },
-	# Video
-	{ mime = "video/*", run = "video" },
-	# PDF
-	{ mime = "application/pdf", run = "pdf" },
-	# Archive
-	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
-	{ mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
-	{ name = "*.{AppImage,appimage}", run = "archive" },
-	# Virtual Disk / Disk Image
-	{ mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
-	{ mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
-	{ name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
-	# Font
-	{ mime = "font/*", run = "font" },
-	{ mime = "application/ms-opentype", run = "font" },
-	# Empty file
-	{ mime = "inode/empty", run = "empty" },
-	# Fallback
-	{ name = "*", run = "file" },
-]
+
+# The full `fetchers` / `spotters` / `preloaders` / `previewers` preset copies that used to
+# live here were also nested inside [[open.prepend_rules]] and therefore inert. They were
+# verbatim copies of yazi's presets, so dropping them changes nothing -- yazi's own presets
+# apply. (Re-adding them would have OVERRIDDEN the presets, i.e. a behaviour change.)
 
 [input]
 cursor_blink = false
@@ -263,26 +205,26 @@ shell_offset = [ 0, 2, 50, 3 ]
 
 [confirm]
 # trash
-trash_title 	= "Trash {n} selected file{s}?"
-trash_origin	= "center"
-trash_offset	= [ 0, 0, 70, 20 ]
+trash_title  = "Trash {n} selected file{s}?"
+trash_origin = "center"
+trash_offset = [ 0, 0, 70, 20 ]
 
 # delete
-delete_title 	= "Permanently delete {n} selected file{s}?"
-delete_origin	= "center"
-delete_offset	= [ 0, 0, 70, 20 ]
+delete_title  = "Permanently delete {n} selected file{s}?"
+delete_origin = "center"
+delete_offset = [ 0, 0, 70, 20 ]
 
 # overwrite
 overwrite_title   = "Overwrite file?"
-overwrite_content = "Will overwrite the following file:"
+overwrite_body    = "Will overwrite the following file:"
 overwrite_origin  = "center"
 overwrite_offset  = [ 0, 0, 50, 15 ]
 
 # quit
-quit_title   = "Quit?"
-quit_content = "The following task is still running, are you sure you want to quit?"
-quit_origin  = "center"
-quit_offset  = [ 0, 0, 50, 15 ]
+quit_title  = "Quit?"
+quit_body   = "The following task is still running, are you sure you want to quit?"
+quit_origin = "center"
+quit_offset = [ 0, 0, 50, 15 ]
 
 [pick]
 open_title  = "Open with:"
@@ -290,21 +232,20 @@ open_origin = "hovered"
 open_offset = [ 0, 1, 50, 7 ]
 
 [which]
-sort_by      	 = "none"
+sort_by        = "none"
 sort_sensitive = false
-sort_reverse 	 = false
+sort_reverse   = false
 sort_translit  = false
 
+# git.yazi fetchers -- your init.lua calls require("git"):setup() but this block was
+# commented out (and used the pre-26.x `id`/`name` keys), so git status signs never showed.
+# 26.x syntax: `url` instead of `name`, `group` instead of `id`.
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
 
-
-
-# [[plugin.prepend_fetchers]]
-# id   = "git"
-# name = "*"
-# run  = "git"
-
-# [[plugin.prepend_fetchers]]
-# id   = "git"
-# name = "*/"
-# run  = "git"
-
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"

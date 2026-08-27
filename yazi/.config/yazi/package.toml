@@ -1,76 +1,57 @@
-[[plugin.repos]]
-name = "bat"
-path = "plugins/bat.yazi"
-
 [[plugin.deps]]
 use = "dedukun/bookmarks"
 rev = "9ef1254"
 hash = "92fbb5483657fa7976cdf4e0104e18e0"
 
 [[plugin.deps]]
-use = "Ape/mediainfo"
-rev = "c69314e"
-hash = "b25c2acb08d9ca5ff5cf71ea764fed8d"
-
-[[plugin.deps]]
 use = "AnirudhG07/plugins-yazi:copy-file-contents"
-rev = "11167e1"
-hash = "27c50e6bc15c09096505b805b238ade0"
+rev = "3f4f1a3"
+hash = "421263a8558fbd2fdb07a75f074cc6e3"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "c82794f"
-hash = "2b0c33928986f126d5c5a4cac31a6b46"
+rev = "e73fd74"
+hash = "6ea5f37c7f219671ec504cb8311f889d"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/bypass"
-rev = "6c5414f"
-hash = "905054b2df08ff79af223e0b6f249fa3"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:max-preview"
-rev = "7afba3a"
-hash = "9bc26d10d2f6e2aa93b10905b1b76979"
+rev = "4a0c70e"
+hash = "3c66d95bf63fa16178e98967fbae9429"
 
 [[plugin.deps]]
 use = "Ape/simple-status"
-rev = "709f653"
-hash = ""
+rev = "d0da104"
+hash = "68603fdd1dcaf415227e2c77a9317947"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "247f49d"
-hash = "f450a5f0b5d067f1a749dcec92293615"
+rev = "ea92cf4"
+hash = "9776f378459072b6c2875eae5addc49d"
 
 [[plugin.deps]]
 use = "AnirudhG07/custom-shell"
-rev = "d7fb2b3"
-hash = "c1e768e199e1ce331b0c1b4203982dc7"
-
-[[plugin.deps]]
-use = "Reledia/miller"
-rev = "40e0265"
-hash = ""
+rev = "6f68404"
+hash = "32558ab53db6009fb2b0c131c437a139"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "d7588f6"
-hash = "3996fc74044bc44144b323686f887e1"
+rev = "c591a36"
+hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
-rev = "843c3fa"
-hash = "b4040931f0d2f9670ddb4923e55cd881"
+rev = "02597c4"
+hash = "33982a6e2d6df07619a2a0fc163a0950"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "d7588f6"
-hash = "63b6c222bf2103b3023389dde5e2ecfe"
+rev = "c591a36"
+hash = "5bb0bfab901d3601c370eafdd66edd31"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "d7588f6"
-hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+rev = "c591a36"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "wylie102/duckdb"
@@ -79,13 +60,18 @@ hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "d7588f6"
-hash = "2143a53182dbbe935a1abd1623424aa5"
+rev = "c591a36"
+hash = "45a533508a9840cc5a10cf6129f63e6a"
 
 [[plugin.deps]]
 use = "ciarandg/cd-git-root"
 rev = "a0e0f4b"
 hash = "b84a85f3b513bd9c0a0ab93cc7c8e4c3"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "c591a36"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [flavor]
 deps = []

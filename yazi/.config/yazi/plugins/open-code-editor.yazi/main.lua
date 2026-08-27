@@ -1,7 +1,7 @@
 local selected_or_hovered = ya.sync(function()
 	local tab, paths = cx.active, {}
 	for _, u in pairs(tab.selected) do
-		paths[#paths + 1] = tostring(u)
+		paths[#paths + 1] = tostring(u.url or u)
 	end
 	if #paths == 0 and tab.current.hovered then
 		paths[1] = tostring(tab.current.hovered.url)
@@ -11,7 +11,7 @@ end)
 
 return {
 	entry = function()
-		ya.manager_emit("escape", { visual = true })
+		ya.emit("escape", { visual = true })
 
 		local urls = selected_or_hovered()
 		if #urls == 0 then
